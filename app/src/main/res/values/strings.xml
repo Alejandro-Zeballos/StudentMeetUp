@@ -1,0 +1,64 @@
+<resources>
+    <string name="app_name">StudentMeetUp</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="application_name">StudentMeetUp</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="menu_home">Home</string>
+    <string name="menu_show_sessions">Show sessions</string>
+    <string name="menu_filter_sessions">Filter sessions</string>
+    <string name="menu_manage_sessions">Manage session</string>
+    <string name="menu_search_user">Search User</string>
+    <string name="menu_create_session">Create Session</string>
+    <string name="login">Login</string>
+    <string name="hint_email">Insert Email</string>
+    <string name="hint_password">Insert your password</string>
+    <string name="register">Register</string>
+    <string name="hint_register">If your dont have account you can register here:</string>
+    <string name="title_register">Register</string>
+    <string name="title_new_session">New Session</string>
+    <string name="hint_name">Name</string>
+    <string name="hint_surname">Surname</string>
+    <string name="hint_course">Course</string>
+    <string name="hint_description_yourself">Description about yourself</string>
+    <string name="hint_repeat_password">Repeat password</string>
+    <string name="hint_title">Title</string>
+    <string name="hint_date">Date</string>
+    <string name="hint_location">Location</string>
+    <string name="hint_description_session">Short description about the session</string>
+    <string name="create_session">Create Session</string>
+    <string name="join_session">Join Session</string>
+    <string name="profile">Profile</string>
+    <string name="edit_session">Edit Session</string>
+    <string name="delete_session">Delete Session</string>
+    <string name="welcome_message">Welcome!</string>
+    <string name="registration">Registration</string>
+    <string name="time">Time</string>
+    <string name="description">Description</string>
+    <string name="people_joined">People joined</string>
+    <string name="session_admin">Administrator</string>
+    <string name="leave_session">Leave Session</string>
+    <string name="reporting_form">Reporting Form</string>
+    <string name="why_reporting">Why you want to report the user?</string>
+    <string name="hint_description_report">Write a short description about the report</string>
+    <string name="report_user">Report  User</string>
+    <string name="hint_search_user">Input the user nickname</string>
+    <string name="button_search_user">Search User</string>
+    <string name="button_cancel">Cancel</string>
+    <string name="title_user_profile">User Profile</string>
+
+    <string-array name="reporting_reasons">
+        <item>Reason 1</item>
+        <item>Reason 2</item>
+        <item>Reason 3</item>
+    </string-array>
+
+    <string-array name="courses_array">
+        <item>IT</item>
+        <item>Business</item>
+        <item>Others</item>
+    </string-array>
+</resources>

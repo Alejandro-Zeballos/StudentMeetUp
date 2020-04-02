@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/menu_search_user"
+        android:textAlignment="center"
+        android:textAppearance="@style/titles" />
+
+    <EditText
+        android:id="@+id/edit_text_nickname"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="4dp"
+        android:layout_marginTop="@dimen/medium_margin"
+        android:layout_marginRight="4dp"
+        android:layout_marginBottom="@dimen/medium_margin"
+        android:hint="@string/hint_search_user"
+        android:inputType="textEmailAddress" />
+
+</LinearLayout>

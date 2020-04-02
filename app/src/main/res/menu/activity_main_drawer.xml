@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/nav_show_sessions"
+            android:icon="@android:drawable/ic_menu_view"
+            android:title="@string/menu_show_sessions" />
+        <item
+            android:id="@+id/nav_filter_sessions"
+            android:icon="@android:drawable/ic_menu_sort_by_size"
+            android:title="@string/menu_filter_sessions" />
+
+    </group>
+
+    <item android:title="Manage Sessions">
+        <menu>
+            <item
+                android:id="@+id/nav_create_session"
+                android:icon="@android:drawable/ic_menu_add"
+                android:title="@string/menu_create_session" />
+            <item
+                android:id="@+id/nav_manage_sessions"
+                android:icon="@android:drawable/ic_menu_manage"
+                android:title="@string/menu_manage_sessions" />
+            <item
+                android:id="@+id/nav_search_user"
+                android:icon="@android:drawable/ic_menu_search"
+                android:fillColor="#FF000000"
+                android:title="@string/menu_search_user" />
+        </menu>
+    </item>
+
+</menu>
