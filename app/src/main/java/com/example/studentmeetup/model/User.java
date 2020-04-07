@@ -4,6 +4,7 @@ package com.example.studentmeetup.model;
 
 public class User {
 
+    private String mId;
     private String mName;
     private String mNickName;
     private Course mCourse;
@@ -15,6 +16,7 @@ public class User {
 
 
     private User(Builder builder){
+        this.mId = builder.mId;
         this.mName = builder.mName;
         this.mNickName = builder.mNickname;
         this.mCourse = builder.mCourse;
@@ -48,6 +50,8 @@ public class User {
         return mPassword;
     }
 
+    public String getId(){ return mId; }
+
     public int getSessionsCreated() {
         return mSessionsCreated;
     }
@@ -65,6 +69,7 @@ public class User {
     }
 
     public static class Builder{
+        private String mId;
         private String mName;
         private String mNickname;
         private Course mCourse;
@@ -82,6 +87,7 @@ public class User {
             this.mNickname = nickname;
             this.mDescription = "";
             this.mName = "";
+            this.mId = "";
             this.mSessionsCreated = 0;
             this.mSessionsJoined = 0;
 
@@ -98,6 +104,12 @@ public class User {
             this.mName = name;
             return this;
 
+        }
+
+        public Builder setId(String id){
+
+            this.mId = id;
+            return this;
         }
 
         public User build(){

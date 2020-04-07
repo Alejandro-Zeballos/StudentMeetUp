@@ -1,4 +1,4 @@
-package com.example.studentmeetup.ui.dialogs;
+package com.example.studentmeetup.view.dialogs;
 
 import android.app.AlertDialog;
 import android.app.Dialog;

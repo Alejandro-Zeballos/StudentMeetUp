@@ -2,6 +2,7 @@ package com.example.studentmeetup.model;
 
 
 public class Report {
+    private int id;
     private String idReportee;
     private String idReported;
     private Reason reason;
@@ -10,6 +11,7 @@ public class Report {
     private String reason_desc;
 
     private Report(Builder builder){
+        this.id = builder.id;
         this.idReportee = builder.idReportee;
         this.idReported = builder.idReported;
         this.reason = builder.reason;
@@ -19,11 +21,12 @@ public class Report {
 
     }
 
-    public String idReportee() {
+
+    public String getIdReportee() {
         return idReportee;
     }
 
-    public String idReported() {
+    public String getIdReported() {
         return idReported;
     }
 
@@ -35,8 +38,12 @@ public class Report {
         return date;
     }
 
+    public String getTime(){ return time; }
+
+
     public static class Builder{
 
+        private int id;
         private String idReportee;
         private String idReported;
         private Reason reason;
@@ -44,18 +51,42 @@ public class Report {
         private String time;
         private String reason_desc;
 
-        public Builder(String idReported, String idReportee){
+        public Builder(String idReported, String idReportee, int id){
             this.idReported = idReported;
             this.idReportee = idReportee;
-            this.date = DateFormater.getDate();
-            this.time = DateFormater.getTime();
+            this.id = id;
+            this.date = "";
+            this.time = "";
             this.reason = Reason.Reason1;
             this.reason_desc = "";
+            this.id = id;
+        }
+
+        public Builder setReason(Reason reason){
+            this.reason = reason;
+            return this;
+        }
+
+        public Builder setReasonDescription(String description){
+            this.reason_desc = description;
+            return this;
+        }
+
+        public Builder setDate(String date){
+            this.date = date;
+            return this;
+        }
+
+        public Builder setTime(String time){
+            this.time = time;
+            return this;
         }
 
         public Report build(){
+
             return new Report(this);
         }
+
 
 
     }

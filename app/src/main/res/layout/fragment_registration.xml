@@ -45,7 +45,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView6" />
 
     <EditText
-        android:id="@+id/edit_text_date"
+        android:id="@+id/edit_text_nickname"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
@@ -67,7 +67,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toEndOf="@+id/textView7"
-        app:layout_constraintTop_toBottomOf="@+id/edit_text_date" />
+        app:layout_constraintTop_toBottomOf="@+id/edit_text_nickname" />
 
     <TextView
         android:id="@+id/textView7"
@@ -76,7 +76,7 @@
         android:layout_marginTop="@dimen/medium_margin"
         android:text="@string/hint_course"
         android:textAppearance="@style/input_text"
-        app:layout_constraintTop_toBottomOf="@+id/edit_text_date"
+        app:layout_constraintTop_toBottomOf="@+id/edit_text_nickname"
         tools:layout_editor_absoluteX="3dp" />
 
     <EditText
