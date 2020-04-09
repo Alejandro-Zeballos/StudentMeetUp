@@ -11,15 +11,8 @@ import android.view.ViewGroup;
 
 import com.example.studentmeetup.R;
 
-/**
- * A simple {@link Fragment} subclass.
- */
+
 public class FragmentSessions extends Fragment {
-
-
-    public FragmentSessions() {
-        // Required empty public constructor
-    }
 
 
     @Override

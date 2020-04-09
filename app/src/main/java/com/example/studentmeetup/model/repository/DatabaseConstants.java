@@ -2,7 +2,7 @@ package com.example.studentmeetup.model.repository;
 
 public class DatabaseConstants {
 
-    public static final String ROOT_URL = "http://127.0.0.1/Android/v1/";
+    public static final String ROOT_URL = "http://10.0.2.2/tests/";
     public static final String URL_REGISTER = ROOT_URL + "registerUser.php";
     public static final String URL_LOGIN = ROOT_URL + "loginUser.php";
     public static final String URL_CREATE_SESSION = ROOT_URL + "createSession.php";

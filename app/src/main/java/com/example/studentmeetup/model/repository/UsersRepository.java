@@ -19,20 +19,25 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class UsersRepository {
 
-    private Webservice webservice = new Retrofit.Builder()
-                            .baseUrl("https://jsonplaceholder.typicode.com/")
-                            .addConverterFactory(GsonConverterFactory.create())
-                            .build()
-                            .create(Webservice.class);
-            ;
+    private Webservice webservice;
+    private static UsersRepository instance;
 
-//    public User getUser();
-//    public void registerUser(User user, Context context);
-//    public void editUser(User user, Context context);
-//    public void reportUser(Report form, Context context);
-//    public void deleteUser(User user, Context context);
+    private UsersRepository(){
+        webservice = new Retrofit.Builder()
+                .baseUrl(DatabaseConstants.ROOT_URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build()
+                .create(Webservice.class);
+    }
 
-    public LiveData<User> getUser(String userId){
+    public static UsersRepository getInstance(){
+        if(instance == null){
+            instance = new UsersRepository();
+        }
+        return instance;
+    }
+
+    public MutableLiveData<User> getUser(String userId){
 
         final MutableLiveData<User> data = new MutableLiveData<>();
 
@@ -52,28 +57,35 @@ public class UsersRepository {
 
     }
 
-    public LiveData<User> login(String username, String password){
+    public MutableLiveData<User> login(String username, String password){
 
-        final MutableLiveData<User> data = new MutableLiveData<>();
+        final MutableLiveData<User> user = new MutableLiveData<>();
+        Log.i("EN USERREPOSITORY", "adentro del metodo");
+
+
 
         webservice.login(username, password).enqueue(new Callback<User>() {
+
             @Override
             public void onResponse(Call<User> call, Response<User> response) {
-                data.setValue(response.body());
-                Log.i("API response:", response.message() );
+
+                user.setValue(response.body());
+                Log.i("User repository:", user.getValue().toString() );
+
             }
 
             @Override
             public void onFailure(Call<User> call, Throwable t) {
-
+                Log.i("API failure:", t.getMessage() );
             }
         });
-
-        return data;
+        //Log.i("Sending data", "Back to ModelVIew" );
+       // Log.i("Data Sent:", data.getValue().toString() );
+        return user;
 
     }
 
-    public LiveData<User> register(User user){
+    public MutableLiveData<User> register(User user){
 
         final MutableLiveData<User> data = new MutableLiveData<>();
 

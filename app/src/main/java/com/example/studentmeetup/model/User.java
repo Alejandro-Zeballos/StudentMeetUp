@@ -4,68 +4,82 @@ package com.example.studentmeetup.model;
 
 public class User {
 
-    private String mId;
-    private String mName;
-    private String mNickName;
-    private Course mCourse;
-    private String mDescription;
-    private String mEmail;
-    private String mPassword;
-    private int mSessionsCreated;
-    private int mSessionsJoined;
+    private String id_student;
+    private String student_firstName;
+    private String student_nickname;
+    private Course student_course;
+    private String student_description;
+    private String student_email;
+    private String student_password;
+    private int sessions_joined;
+    private int sessions_created;
 
 
     private User(Builder builder){
-        this.mId = builder.mId;
-        this.mName = builder.mName;
-        this.mNickName = builder.mNickname;
-        this.mCourse = builder.mCourse;
-        this.mDescription = builder.mDescription;
-        this.mEmail = builder.mEmail;
-        this.mPassword = builder.mPassword;
+        this.id_student = builder.mId;
+        this.student_firstName = builder.mName;
+        this.student_nickname = builder.mNickname;
+        this.student_course = builder.mCourse;
+        this.student_description = builder.mDescription;
+        this.student_email = builder.mEmail;
+        this.student_password = builder.mPassword;
+    }
+
+    @Override
+    public String toString(){
+        return "\n\n"+ "Id: "+ this.id_student + "\n"+
+                "Email: " + this.student_email + "\n"+
+                "Password: " + this.student_password + "\n"+
+                "Name: " + this.student_firstName + "\n"+
+                "Nickname: " + this.student_nickname + "\n"+
+                "Course: " + this.student_course + "\n"+
+                "Description: " + this.student_description + "\n"+
+                "Sessions_joined" + this.sessions_joined + "\n"+
+                "Sessions_created" + this.sessions_created + "\n\n";
+
     }
 
 
     public String getName() {
-        return mName;
+        return student_firstName;
     }
 
     public String getNickName() {
-        return mNickName;
+        return student_nickname;
     }
 
     public Course getCourse() {
-        return mCourse;
+        return student_course;
     }
 
     public String getDescription() {
-        return mDescription;
+        return student_description;
     }
 
     public String getEmail() {
-        return mEmail;
+        return student_email;
     }
 
     public String getPassword() {
-        return mPassword;
+        return student_password;
     }
 
-    public String getId(){ return mId; }
+    public String getId(){ return id_student; }
 
     public int getSessionsCreated() {
-        return mSessionsCreated;
+        return sessions_created;
     }
 
     public int getSessionsJoined() {
-        return mSessionsJoined;
+        return sessions_joined;
     }
 
     public void addSessionCreated(){
-        this.mSessionsCreated++;
+        this.sessions_created++;
     }
 
     public void addSessionJoined(){
-        this.mSessionsJoined++;
+        this.sessions_joined++;
     }
 
     public static class Builder{

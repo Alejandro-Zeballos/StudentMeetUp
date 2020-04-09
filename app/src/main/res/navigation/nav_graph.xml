@@ -3,30 +3,35 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/fragmentSessions">
+    app:startDestination="@id/nav_sessions">
     <fragment
-        android:id="@+id/fragmentSessions"
+        android:id="@+id/nav_sessions"
         android:name="com.example.studentmeetup.view.FragmentSessions"
         android:label="fragment_sessions"
         tools:layout="@layout/fragment_sessions" />
     <fragment
-        android:id="@+id/fragmentReportUser"
+        android:id="@+id/nav_report_user"
         android:name="com.example.studentmeetup.view.FragmentReportUser"
         android:label="fragment_report_user"
         tools:layout="@layout/fragment_report_user" />
     <fragment
-        android:id="@+id/fragmentAdminSession"
+        android:id="@+id/nav_admin_session"
         android:name="com.example.studentmeetup.view.FragmentAdminSession"
         android:label="fragment_admin_session_room"
         tools:layout="@layout/fragment_admin_session_room" />
     <dialog
-        android:id="@+id/dialogSearchUser"
+        android:id="@+id/nav_search_user"
         android:name="com.example.studentmeetup.view.dialogs.DialogSearchUser"
         android:label="dialog_search_user"
         tools:layout="@layout/dialog_search_user" />
     <dialog
-        android:id="@+id/dialogSearchSession"
+        android:id="@+id/nav_search_session"
         android:name="com.example.studentmeetup.view.dialogs.DialogSearchSession"
         android:label="dialog_search_session"
         tools:layout="@layout/dialog_search_session" />
+    <fragment
+        android:id="@+id/nav_new_session"
+        android:name="com.example.studentmeetup.view.FragmentNewSession"
+        android:label="fragment_new_session"
+        tools:layout="@layout/fragment_new_session" />
 </navigation>
