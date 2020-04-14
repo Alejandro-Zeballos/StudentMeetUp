@@ -13,7 +13,7 @@
     <Button
         android:id="@+id/button_register"
         style="@style/primary_button_style"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="@string/register"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -32,7 +32,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/edit_text_title"
+        android:id="@+id/edit_text_name"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/medium_margin"
@@ -55,7 +55,7 @@
         android:textAppearance="@style/input_text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edit_text_title" />
+        app:layout_constraintTop_toBottomOf="@+id/edit_text_name" />
 
     <Spinner
         android:id="@+id/spinner_course"
@@ -76,8 +76,8 @@
         android:layout_marginTop="@dimen/medium_margin"
         android:text="@string/hint_course"
         android:textAppearance="@style/input_text"
-        app:layout_constraintTop_toBottomOf="@+id/edit_text_nickname"
-        tools:layout_editor_absoluteX="3dp" />
+        app:layout_constraintStart_toStartOf="@+id/edit_text_nickname"
+        app:layout_constraintTop_toBottomOf="@+id/edit_text_nickname" />
 
     <EditText
         android:id="@+id/edit_text_email"
@@ -93,7 +93,7 @@
         app:layout_constraintTop_toBottomOf="@+id/spinner_course" />
 
     <EditText
-        android:id="@+id/esit_text_pass"
+        android:id="@+id/edit_text_pass"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/medium_margin"
@@ -114,7 +114,7 @@
         android:inputType="textPassword"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/esit_text_pass" />
+        app:layout_constraintTop_toBottomOf="@+id/edit_text_pass" />
 
     <EditText
         android:id="@+id/edit_text_description"

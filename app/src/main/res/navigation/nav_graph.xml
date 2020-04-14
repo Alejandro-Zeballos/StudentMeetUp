@@ -3,35 +3,121 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/nav_sessions">
+    app:startDestination="@id/nav_fragment_login">
     <fragment
         android:id="@+id/nav_sessions"
         android:name="com.example.studentmeetup.view.FragmentSessions"
         android:label="fragment_sessions"
-        tools:layout="@layout/fragment_sessions" />
+        tools:layout="@layout/fragment_sessions" >
+        <action
+            android:id="@+id/action_nav_sessions_to_nav_session_preview"
+            app:destination="@id/nav_session_preview" />
+    </fragment>
     <fragment
         android:id="@+id/nav_report_user"
         android:name="com.example.studentmeetup.view.FragmentReportUser"
         android:label="fragment_report_user"
-        tools:layout="@layout/fragment_report_user" />
-    <fragment
-        android:id="@+id/nav_admin_session"
-        android:name="com.example.studentmeetup.view.FragmentAdminSession"
-        android:label="fragment_admin_session_room"
-        tools:layout="@layout/fragment_admin_session_room" />
+        tools:layout="@layout/fragment_report_user" >
+        <action
+            android:id="@+id/action_nav_report_user_to_nav_sessions"
+            app:destination="@id/nav_sessions" />
+    </fragment>
     <dialog
         android:id="@+id/nav_search_user"
         android:name="com.example.studentmeetup.view.dialogs.DialogSearchUser"
         android:label="dialog_search_user"
-        tools:layout="@layout/dialog_search_user" />
+        tools:layout="@layout/dialog_search_user" >
+        <action
+            android:id="@+id/action_nav_search_user_to_nav_user_profile"
+            app:destination="@id/nav_user_profile" />
+    </dialog>
     <dialog
         android:id="@+id/nav_search_session"
         android:name="com.example.studentmeetup.view.dialogs.DialogSearchSession"
         android:label="dialog_search_session"
-        tools:layout="@layout/dialog_search_session" />
+        tools:layout="@layout/dialog_search_session" >
+        <action
+            android:id="@+id/action_nav_search_session_to_nav_sessions"
+            app:destination="@id/nav_sessions" />
+    </dialog>
     <fragment
         android:id="@+id/nav_new_session"
         android:name="com.example.studentmeetup.view.FragmentNewSession"
         android:label="fragment_new_session"
-        tools:layout="@layout/fragment_new_session" />
+        tools:layout="@layout/fragment_new_session" >
+        <action
+            android:id="@+id/action_nav_new_session_to_nav_my_sessions"
+            app:destination="@id/nav_my_sessions" />
+    </fragment>
+    <fragment
+        android:id="@+id/nav_fragment_registration"
+        android:name="com.example.studentmeetup.view.FragmentRegistration"
+        android:label="fragment_registration"
+        tools:layout="@layout/fragment_registration">
+        <action
+            android:id="@+id/action_nav_fragment_registration_to_nav_fragment_login"
+            app:destination="@id/nav_fragment_login" />
+    </fragment>
+    <fragment
+        android:id="@+id/nav_fragment_login"
+        android:name="com.example.studentmeetup.view.FragmentLogin"
+        android:label="fragment_login"
+        tools:layout="@layout/fragment_login" >
+        <action
+            android:id="@+id/action_nav_fragment_login_to_nav_sessions"
+            app:destination="@id/nav_sessions" />
+        <action
+            android:id="@+id/action_nav_fragment_login_to_nav_fragment_registration"
+            app:destination="@id/nav_fragment_registration" />
+    </fragment>
+    <fragment
+        android:id="@+id/nav_edit_session"
+        android:name="com.example.studentmeetup.view.FragmentEditSession"
+        android:label="fragment_edit_session"
+        tools:layout="@layout/fragment_edit_session" >
+        <action
+            android:id="@+id/action_nav_edit_session_to_nav_manage_sessions"
+            app:destination="@id/nav_manage_session" />
+    </fragment>
+    <fragment
+        android:id="@+id/nav_manage_session"
+        android:name="com.example.studentmeetup.view.FragmentManageSession"
+        android:label="fragment_manage_session"
+        tools:layout="@layout/fragment_manage_session">
+        <action
+            android:id="@+id/action_nav_manage_session_to_nav_edit_session"
+            app:destination="@id/nav_edit_session" />
+    </fragment>
+    <fragment
+        android:id="@+id/nav_user_profile"
+        android:name="com.example.studentmeetup.view.FragmentUserProfile"
+        android:label="fragment_user_profile"
+        tools:layout="@layout/fragment_user_profile" />
+    <fragment
+        android:id="@+id/nav_session_preview"
+        android:name="com.example.studentmeetup.view.FragmentSessionPreview"
+        android:label="fragment_session_preview"
+        tools:layout="@layout/fragment_session_preview" >
+        <action
+            android:id="@+id/action_nav_session_preview_to_nav_session_room"
+            app:destination="@id/nav_session_room" />
+    </fragment>
+    <fragment
+        android:id="@+id/nav_session_room"
+        android:name="com.example.studentmeetup.view.FragmentSessionRoom"
+        android:label="fragment_session_room"
+        tools:layout="@layout/fragment_session_room" >
+        <action
+            android:id="@+id/action_nav_session_room_to_nav_sessions"
+            app:destination="@id/nav_sessions" />
+    </fragment>
+    <fragment
+        android:id="@+id/nav_my_sessions"
+        android:name="com.example.studentmeetup.view.FragmentMySessions"
+        android:label="fragment_my_sessions"
+        tools:layout="@layout/fragment_my_sessions" >
+        <action
+            android:id="@+id/action_nav_my_sessions_to_nav_manage_session"
+            app:destination="@id/nav_manage_session" />
+    </fragment>
 </navigation>

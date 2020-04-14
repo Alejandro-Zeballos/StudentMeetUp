@@ -6,7 +6,7 @@ import com.example.studentmeetup.model.Report;
 
 import java.util.ArrayList;
 
-public class reportsRepository {
+public class ReportsRepository {
 
 
 

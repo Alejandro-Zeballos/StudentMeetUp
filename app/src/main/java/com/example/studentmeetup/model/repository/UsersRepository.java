@@ -3,6 +3,7 @@ package com.example.studentmeetup.model.repository;
 import android.content.Context;
 import android.util.Log;
 
+import com.example.studentmeetup.model.ApiResponse;
 import com.example.studentmeetup.model.Report;
 import com.example.studentmeetup.model.User;
 import com.example.studentmeetup.model.webservice.Webservice;
@@ -22,7 +23,7 @@ public class UsersRepository {
     private Webservice webservice;
     private static UsersRepository instance;
 
-    private UsersRepository(){
+    private UsersRepository() {
         webservice = new Retrofit.Builder()
                 .baseUrl(DatabaseConstants.ROOT_URL)
                 .addConverterFactory(GsonConverterFactory.create())
@@ -30,14 +31,14 @@ public class UsersRepository {
                 .create(Webservice.class);
     }
 
-    public static UsersRepository getInstance(){
-        if(instance == null){
+    public static UsersRepository getInstance() {
+        if (instance == null) {
             instance = new UsersRepository();
         }
         return instance;
     }
 
-    public MutableLiveData<User> getUser(String userId){
+    public MutableLiveData<User> getUser(String userId) {
 
         final MutableLiveData<User> data = new MutableLiveData<>();
 
@@ -57,11 +58,10 @@ public class UsersRepository {
 
     }
 
-    public MutableLiveData<User> login(String username, String password){
+    public MutableLiveData<User> login(String username, String password) {
 
         final MutableLiveData<User> user = new MutableLiveData<>();
         Log.i("EN USERREPOSITORY", "adentro del metodo");
-
 
 
         webservice.login(username, password).enqueue(new Callback<User>() {
@@ -70,40 +70,47 @@ public class UsersRepository {
             public void onResponse(Call<User> call, Response<User> response) {
 
                 user.setValue(response.body());
-                Log.i("User repository:", user.getValue().toString() );
+                Log.i("User repository:", user.getValue().toString());
 
             }
 
             @Override
             public void onFailure(Call<User> call, Throwable t) {
-                Log.i("API failure:", t.getMessage() );
+                Log.i("API failure:", t.getMessage());
             }
         });
         //Log.i("Sending data", "Back to ModelVIew" );
-       // Log.i("Data Sent:", data.getValue().toString() );
+        // Log.i("Data Sent:", data.getValue().toString() );
         return user;
 
     }
 
-    public MutableLiveData<User> register(User user){
+    public MutableLiveData<ApiResponse> register(String email,
+                                                 String name,
+                                                 String nickname,
+                                                 String password,
+                                                 String repeatPass,
+                                                 String description,
+                                                 String course) {
 
-        final MutableLiveData<User> data = new MutableLiveData<>();
+        final MutableLiveData<ApiResponse> apiResponse = new MutableLiveData<>();
 
-        webservice.register(user).enqueue(new Callback<User>() {
+        webservice.register(name, nickname, email, password, repeatPass, description, course).enqueue(new Callback<ApiResponse>() {
+
+
             @Override
-            public void onResponse(Call<User> call, Response<User> response) {
-                data.setValue(response.body());
-                Log.i("API response:", response.message() );
+            public void onResponse(Call<ApiResponse> call, Response<ApiResponse> response) {
+                apiResponse.setValue(response.body());
+                Log.i("In response callback", response.body().toString());
             }
 
             @Override
-            public void onFailure(Call<User> call, Throwable t) {
+            public void onFailure(Call<ApiResponse> call, Throwable t) {
 
             }
+
         });
 
-        return data;
-
+        return apiResponse;
     }
-
 }

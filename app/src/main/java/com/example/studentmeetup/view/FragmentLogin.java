@@ -1,18 +1,13 @@
 package com.example.studentmeetup.view;
 
 
-import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
-import androidx.lifecycle.LiveData;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.lifecycle.ViewModelProviders;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -21,13 +16,11 @@ import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import com.example.studentmeetup.MainActivity;
 import com.example.studentmeetup.R;
 import com.example.studentmeetup.model.User;
-import com.example.studentmeetup.view.sessions.ListSessionsFragment;
-import com.example.studentmeetup.viewmodel.ViewModelLogin;
+import com.example.studentmeetup.viewmodel.ViewModelUser;
 
 
 public class FragmentLogin extends Fragment {
@@ -40,7 +33,8 @@ public class FragmentLogin extends Fragment {
     private Button mButtonLogin;
     private Button mButtonRegister;
 
-    private ViewModelLogin model;
+    private ViewModelUser userModel;
+
 
     public FragmentLogin() {
         // Required empty public constructor
@@ -50,7 +44,7 @@ public class FragmentLogin extends Fragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        model = new ViewModelProvider(requireActivity()).get(ViewModelLogin.class);
+        userModel = new ViewModelProvider(requireActivity()).get(ViewModelUser.class);
 
     }
 
@@ -72,7 +66,7 @@ public class FragmentLogin extends Fragment {
         mButtonLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                model.login(mEditTextUserName.getText().toString().trim(),
+                userModel.login(mEditTextUserName.getText().toString().trim(),
                         mEditTextPass.getText().toString().trim())
                         .observe(getViewLifecycleOwner(), new Observer<User>() {
                     @Override
@@ -91,6 +85,14 @@ public class FragmentLogin extends Fragment {
             }
         });
 
+        mButtonRegister.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ((MainActivity)getActivity()).navigateTo(R.id.action_nav_fragment_login_to_nav_fragment_registration);
+
+            }
+        });
+
 
         return view;
     }
@@ -100,7 +102,7 @@ public class FragmentLogin extends Fragment {
     private void loadMainActivity(){
 
         getActivity().getWindow().clearFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
-        ((MainActivity)getActivity()).switchFragments(new FragmentSessions());
+        ((MainActivity)getActivity()).navigateTo(R.id.action_nav_fragment_login_to_nav_sessions);
     }
 
 

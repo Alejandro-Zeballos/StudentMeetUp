@@ -1,5 +1,6 @@
 package com.example.studentmeetup.model.webservice;
 
+import com.example.studentmeetup.model.ApiResponse;
 import com.example.studentmeetup.model.Report;
 import com.example.studentmeetup.model.Session;
 import com.example.studentmeetup.model.User;
@@ -20,6 +21,7 @@ public interface Webservice {
 
     //---User-------
 
+    @FormUrlEncoded
     @GET("getUser.php")
     Call<User> getUser(@Field("id") String id);
 
@@ -27,29 +29,54 @@ public interface Webservice {
     @POST("login.php")
     Call<User> login(@Field("email") String username, @Field("password") String password);
 
-    @POST("register.php")
-    Call<User> register(@Body User user);
+    @FormUrlEncoded
+    @POST("registerUser.php")
+    Call<ApiResponse> register(@Field("firstName") String firstName,
+                               @Field("nickname") String nickname,
+                               @Field("registerEmail") String email,
+                               @Field("registerPassword") String password,
+                               @Field("repeatPassword") String repeatPass,
+                               @Field("description") String description,
+                               @Field("course") String course);
 
     //----Session-----
 
-    @GET("getSession.php")
-    Call<Session> getSessionById(@Field("id") String id);
+
+
+//    @FormUrlEncoded
+//    @POST("getSession.php")
+//    Call<List<Session>> getSessionsByTag(@Field("tag") String tag);
+
+    @GET("getSessionsById.php")
+    Call<List<Session>> getSessionsById(@Query("id") int id);
 
     @GET("getSession.php")
-    Call<Session> getSessionByTag(@Field("tag") String tag);
+    Call<List<Session>> getSessionsByTag(@Query("tags") String tag);
 
+    @FormUrlEncoded
     @POST("addUser.php")
-    Call<Boolean> addUser(@Body User user);
+    Call<ApiResponse> addUserToSession(@Field("userId") String userId, @Field("sessionId") String sessionId);
 
+    @FormUrlEncoded
     @POST("createSession.php")
-    Call<Session> createSession(@Field("tag") String tag);
+    Call<ApiResponse> createSession(@Field("title") String title,
+                                    @Field("course") String course,
+                                    @Field("date") String date,
+                                    @Field("time") String time,
+                                    @Field("location") String location,
+                                    @Field("description") String description,
+                                    @Field("adminId") int adminId,
+                                    @Field("adminName") String adminName,
+                                    @Field("tags") String tags);
 
-    @DELETE("deleteSession.php")
-    Call<Boolean> deleteSession(@Field("id") String id);
+    @FormUrlEncoded
+    @POST("deleteSession.php")
+    Call<ApiResponse> deleteSession(@Field("sessionId") int sessionId);
+
 
     //----Report------
 
     @POST("saveReport.php")
-    Call<Boolean> saveReport(@Body Report report);
+    Call<ApiResponse> saveReport(@Body Report report);
 
 }
