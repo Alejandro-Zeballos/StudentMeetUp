@@ -34,10 +34,11 @@ public class MainActivity extends AppCompatActivity {
         //Loading the ViewModelLogin into loginModel
         userModel = new ViewModelProvider(this).get(ViewModelUser.class);
 
-
+        //Loading the toolbar
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        //Loading the drawer
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
         // Passing each menu ID as a set of Ids because each

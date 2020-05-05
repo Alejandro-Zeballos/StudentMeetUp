@@ -54,6 +54,8 @@
     <string name="button_search_session">Search</string>
     <string name="session_updated_message">Session updated succesfully</string>
     <string name="session_no_updated_message">Something happend session was not updated</string>
+    <string name="no_session_created">No session created</string>
+    <string name="user_not_found">User not found</string>
 
     <string-array name="reporting_reasons">
         <item>Reason 1</item>

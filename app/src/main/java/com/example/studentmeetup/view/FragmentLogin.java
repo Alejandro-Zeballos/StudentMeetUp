@@ -8,6 +8,8 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.NavOptions;
+import androidx.navigation.Navigation;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -16,6 +18,7 @@ import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.studentmeetup.MainActivity;
 import com.example.studentmeetup.R;
@@ -53,16 +56,16 @@ public class FragmentLogin extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        getActivity().getWindow().addFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
+        getActivity().getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
-        View view = inflater.inflate(R.layout.fragment_login, container, false);
+        final View view = inflater.inflate(R.layout.fragment_login, container, false);
 
         mEditTextUserName = view.findViewById(R.id.edit_text_email);
         mEditTextPass = view.findViewById(R.id.edit_text_password);
         mButtonLogin = view.findViewById(R.id.button_login);
         mButtonRegister = view.findViewById(R.id.button_register);
 
-
+        //Login Button
         mButtonLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -72,12 +75,14 @@ public class FragmentLogin extends Fragment {
                     @Override
                     public void onChanged(User user) {
                         Log.i("In the on CHanged", "in fragmentLogin");
-                        if(user!= null){
+                        if(user!= null){//If found a user with username and pass
                             Log.i("In the on CHanged", "Calling LoadMainActivity with");
                             Log.i("In the on CHanged", user.toString());
-                            loadMainActivity();
+                            loadMainActivity(view);
                         }else{
+                            //If didnt find a user
                             Log.i("In the on CHanged", "trowing user null");
+                            Toast.makeText(getContext(), getString(R.string.user_not_found),Toast.LENGTH_LONG).show();
                         }
                     }
                 });
@@ -99,10 +104,13 @@ public class FragmentLogin extends Fragment {
 
 
 
-    private void loadMainActivity(){
-
-        getActivity().getWindow().clearFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
-        ((MainActivity)getActivity()).navigateTo(R.id.action_nav_fragment_login_to_nav_sessions);
+    private void loadMainActivity(View v){
+        NavOptions navOptions = new NavOptions.Builder()
+                .setPopUpTo(R.id.nav_fragment_login, true)
+                .build();
+        Navigation.findNavController(v).navigate(R.id.action_nav_fragment_login_to_nav_sessions, null, navOptions);
+//        getActivity().getWindow().clearFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
+//        ((MainActivity)getActivity()).navigateTo(R.id.action_nav_fragment_login_to_nav_sessions);
     }
 
 

@@ -50,7 +50,7 @@ public interface Webservice {
     @GET("getSessionsById.php")
     Call<List<Session>> getSessionsById(@Query("id") int id);
 
-    @GET("getSession.php")
+    @GET("getSessionsByTag.php")
     Call<List<Session>> getSessionsByTag(@Query("tags") String tag);
 
     @FormUrlEncoded

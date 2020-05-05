@@ -30,6 +30,7 @@ import javax.security.auth.callback.Callback;
 public class FragmentSessions extends Fragment {
 
     private static String TAG = "FragmentSessions ";
+    public static String SESSION_TAGS = "";
 
     private RecyclerView recyclerView;
     private RecyclerView.Adapter adapter;
@@ -87,7 +88,7 @@ public class FragmentSessions extends Fragment {
 
         //getting session list from model and model from database
 
-        sessionViewModel.getSessionListByTag("").observe(getViewLifecycleOwner(), new Observer<List<Session>>() {
+        sessionViewModel.getSessionListByTag(SESSION_TAGS).observe(getViewLifecycleOwner(), new Observer<List<Session>>() {
             @Override
             public void onChanged(List<Session> sessions) {
 
