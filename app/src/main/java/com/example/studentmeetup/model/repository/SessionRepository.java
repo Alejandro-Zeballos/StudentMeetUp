@@ -152,7 +152,6 @@ public class SessionRepository {
         webservice.updateSession(
                 session.getSessionId(),
                 session.getTitle(),
-                session.getCourse(),
                 session.getDate(),
                 session.getTime(),
                 session.getLocation(),

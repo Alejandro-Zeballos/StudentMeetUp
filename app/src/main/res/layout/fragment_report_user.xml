@@ -12,6 +12,7 @@
         android:id="@+id/text_view_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/layout_margin"
         android:text="@string/reporting_form"
         android:textAppearance="@style/titles"
         app:layout_constraintEnd_toEndOf="parent"
@@ -22,17 +23,19 @@
         android:id="@+id/text_view_why"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/medium_margin"
         android:text="@string/why_reporting"
         android:textAppearance="@style/input_text"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text_view_title" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.3" />
 
     <EditText
         android:id="@+id/edit_text_why"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/medium_margin"
+        android:layout_marginTop="@dimen/large_margin"
         android:ems="10"
         android:gravity="start|top"
         android:hint="@string/hint_description_report"
@@ -55,11 +58,20 @@
     <Button
         android:id="@+id/button_report"
         style="@style/primary_button_style"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/large_margin"
         android:text="@string/report_user"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/button_cancel"
+        style="@style/primary_button_style"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/button_cancel"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/button_report" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

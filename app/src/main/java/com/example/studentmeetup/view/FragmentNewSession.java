@@ -37,7 +37,6 @@ public class FragmentNewSession extends Fragment {
     private EditText mEditTextTitle;
     private EditText mEditTextDate;
     private EditText mEditTextTime;
-    private Spinner mSpinnerCourse;
     private EditText mEditTextLocation;
     private EditText mEditTextDescription;
     private EditText mEditTextTags;
@@ -58,14 +57,12 @@ public class FragmentNewSession extends Fragment {
         mEditTextTime = view.findViewById(R.id.edit_text_time);
         mEditTextLocation = view.findViewById(R.id.edit_text_location);
         mEditTextDescription = view.findViewById(R.id.edit_text_description);
-        mSpinnerCourse = view.findViewById(R.id.spinner_course);
         mButtonCreateSession = view.findViewById(R.id.button_create_session);
         mEditTextTags = view.findViewById(R.id.edit_text_tags);
 
         userModel = new ViewModelProvider(requireActivity()).get(ViewModelUser.class);
         sessionModel = new ViewModelProvider(requireActivity()).get(ViewModelSessions.class);
-
-        user = userModel.getUser();
+        
 
         mButtonCreateSession.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -78,9 +75,15 @@ public class FragmentNewSession extends Fragment {
         return view;
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        user = userModel.getUser();
+    }
+
     private void createSession(){
         Session session = new Session.Builder(  mEditTextTitle.getText().toString(),
-                                                mSpinnerCourse.getSelectedItem().toString(),
+                                                user.getValue().getCourse().toString(),
                                                 mEditTextDate.getText().toString(),
                                                 mEditTextTime.getText().toString(),
                                                 mEditTextLocation.getText().toString(),

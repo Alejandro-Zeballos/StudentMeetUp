@@ -33,7 +33,6 @@ public class FragmentEditSession extends Fragment {
     private EditText mEditTextTitle;
     private EditText mEditTextDate;
     private EditText mEditTextTime;
-    private Spinner mSpinnerCourse;
     private EditText mEditTextLocation;
     private EditText mEditTextDescription;
     private EditText mEditTextTags;
@@ -73,7 +72,6 @@ public class FragmentEditSession extends Fragment {
         mEditTextTime = view.findViewById(R.id.edit_text_time);
         mEditTextLocation = view.findViewById(R.id.edit_text_location);
         mEditTextDescription = view.findViewById(R.id.edit_text_description);
-        mSpinnerCourse = view.findViewById(R.id.spinner_course);
         mEditTextTags = view.findViewById(R.id.edit_text_tags);
         mBtnEditSession = view.findViewById(R.id.button_edit_session);
 
@@ -87,11 +85,7 @@ public class FragmentEditSession extends Fragment {
         mEditTextLocation.setText(currentSession.getLocation());
         mEditTextDescription.setText(currentSession.getDescription());
         mEditTextTags.setText(currentSession.getTags());
-        if(currentSession.getCourse().equals("IT")){
-            mSpinnerCourse.setSelection(0);
-        }else{
-            mSpinnerCourse.setSelection(1);
-        }
+
 
         mBtnEditSession.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -103,7 +97,6 @@ public class FragmentEditSession extends Fragment {
                 updatedSession.setTime(mEditTextTime.getText().toString());
                 updatedSession.setLocation(mEditTextLocation.getText().toString());
                 updatedSession.setDescription(mEditTextDescription.getText().toString());
-                updatedSession.setCourse(mSpinnerCourse.getSelectedItem().toString());
                 updatedSession.setTags(mEditTextTags.getText().toString());
                 //updating the current session
                 sessionModel.updateSession(updatedSession).observe(getViewLifecycleOwner(), new Observer<ApiResponse>() {

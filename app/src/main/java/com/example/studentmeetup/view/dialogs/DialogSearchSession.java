@@ -6,7 +6,11 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.Toast;
 
+import com.example.studentmeetup.MainActivity;
 import com.example.studentmeetup.R;
 import com.example.studentmeetup.model.Session;
 import com.example.studentmeetup.view.FragmentLogin;
@@ -24,6 +28,7 @@ import androidx.lifecycle.ViewModelProvider;
 public class DialogSearchSession extends DialogFragment {
 
     ViewModelSessions sessionViewModel;
+    private EditText editTextTags;
     @NonNull
     @Override
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
@@ -33,15 +38,22 @@ public class DialogSearchSession extends DialogFragment {
 
         //get the layout inflater
         LayoutInflater inflater = requireActivity().getLayoutInflater();
-
+        View view = inflater.inflate(R.layout.dialog_search_session, null);
+        editTextTags = view.findViewById(R.id.edit_text_tags);
         //inflate and set the layout for the dialog
         // Pass null as the parent view because its going in the dialog layout
-        builder.setView(inflater.inflate(R.layout.dialog_search_session, null))
+        builder.setView(view)
                 //add action buttons
                 .setPositiveButton(R.string.button_search_session, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        searchSession();
+                        if(editTextTags.getText().toString().equals("")){
+                            Toast.makeText(getContext(),getString(R.string.tags_empty_message), Toast.LENGTH_LONG).show();
+                        }else{
+                            sessionViewModel.setSessionTags(editTextTags.getText().toString());
+                            MainActivity.navigateTo(R.id.action_nav_search_session_to_nav_sessions);
+                        }
+
 
                     }
                 })

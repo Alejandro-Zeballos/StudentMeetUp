@@ -15,6 +15,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import com.example.studentmeetup.R;
 import com.example.studentmeetup.model.Session;
@@ -30,9 +31,9 @@ import javax.security.auth.callback.Callback;
 public class FragmentSessions extends Fragment {
 
     private static String TAG = "FragmentSessions ";
-    public static String SESSION_TAGS = "";
 
     private RecyclerView recyclerView;
+    private Button mBtnDeleteFilter;
     private RecyclerView.Adapter adapter;
     private RecyclerView.LayoutManager layoutManager;
     private ViewModelSessions sessionViewModel;
@@ -49,9 +50,19 @@ public class FragmentSessions extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_sessions, container, false);
 
+        mBtnDeleteFilter = view.findViewById(R.id.btn_delete_filter);
         recyclerView = view.findViewById(R.id.recycler_view_sessions);
         recyclerView.setHasFixedSize(true);
 
+
+        mBtnDeleteFilter.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                sessionViewModel.setSessionTags("");
+                setUpRecyclerView();
+                mBtnDeleteFilter.setVisibility(View.GONE);
+            }
+        });
 
         layoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(layoutManager);
@@ -84,11 +95,16 @@ public class FragmentSessions extends Fragment {
     private void setUpRecyclerView(){
         layoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(layoutManager);
+        String sessionTag = sessionViewModel.getSessionTags();
+        if(sessionTag.length()!=0){
+            mBtnDeleteFilter.setText(getString(R.string.delete_filter_text)+sessionTag);
+            mBtnDeleteFilter.setVisibility(View.VISIBLE);
+        }
 
 
         //getting session list from model and model from database
 
-        sessionViewModel.getSessionListByTag(SESSION_TAGS).observe(getViewLifecycleOwner(), new Observer<List<Session>>() {
+        sessionViewModel.getSessionListByTag().observe(getViewLifecycleOwner(), new Observer<List<Session>>() {
             @Override
             public void onChanged(List<Session> sessions) {
 

@@ -29,7 +29,7 @@
         tools:layout="@layout/dialog_search_user" >
         <action
             android:id="@+id/action_nav_search_user_to_nav_user_profile"
-            app:destination="@id/nav_user_profile" />
+            app:destination="@+id/nav_user_profile" />
     </dialog>
     <dialog
         android:id="@+id/nav_search_session"
@@ -78,7 +78,9 @@
         tools:layout="@layout/fragment_edit_session" >
         <action
             android:id="@+id/action_nav_edit_session_to_nav_manage_sessions"
-            app:destination="@id/nav_manage_session" />
+            app:destination="@id/nav_manage_session"
+            app:popUpTo="@+id/nav_manage_session"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/nav_manage_session"
@@ -93,7 +95,11 @@
         android:id="@+id/nav_user_profile"
         android:name="com.example.studentmeetup.view.FragmentUserProfile"
         android:label="fragment_user_profile"
-        tools:layout="@layout/fragment_user_profile" />
+        tools:layout="@layout/fragment_user_profile" >
+        <action
+            android:id="@+id/action_nav_user_profile_to_nav_report_user"
+            app:destination="@id/nav_report_user" />
+    </fragment>
     <fragment
         android:id="@+id/nav_session_preview"
         android:name="com.example.studentmeetup.view.FragmentSessionPreview"

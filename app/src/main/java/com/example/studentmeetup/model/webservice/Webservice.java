@@ -21,9 +21,9 @@ public interface Webservice {
 
     //---User-------
 
-    @FormUrlEncoded
-    @GET("getUser.php")
-    Call<User> getUser(@Field("id") String id);
+
+    @GET("searchUser.php")
+    Call<User> searchUser(@Query("nickname") String nickname);
 
     @FormUrlEncoded
     @POST("login.php")
@@ -73,7 +73,6 @@ public interface Webservice {
     @POST("updateSession.php")
     Call<ApiResponse> updateSession(@Field("id") int id,
                                     @Field("title") String title,
-                                    @Field("course") String course,
                                     @Field("date") String date,
                                     @Field("time") String time,
                                     @Field("location") String location,

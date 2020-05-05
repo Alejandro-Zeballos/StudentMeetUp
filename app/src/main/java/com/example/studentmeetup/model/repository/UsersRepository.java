@@ -22,6 +22,12 @@ public class UsersRepository {
 
     private Webservice webservice;
     private static UsersRepository instance;
+    private User appUser;
+
+    public User getUser() {
+        return appUser;
+    }
+
 
     private UsersRepository() {
         webservice = new Retrofit.Builder()
@@ -38,11 +44,11 @@ public class UsersRepository {
         return instance;
     }
 
-    public MutableLiveData<User> getUser(String userId) {
+    public MutableLiveData<User> searchUser(String nickname) {
 
         final MutableLiveData<User> data = new MutableLiveData<>();
 
-        webservice.getUser(userId).enqueue(new Callback<User>() {
+        webservice.searchUser(nickname).enqueue(new Callback<User>() {
             @Override
             public void onResponse(Call<User> call, Response<User> response) {
                 data.setValue(response.body());
@@ -50,7 +56,7 @@ public class UsersRepository {
 
             @Override
             public void onFailure(Call<User> call, Throwable t) {
-
+                Log.e("UserRepository == ", t.getMessage());
             }
         });
 
@@ -70,6 +76,7 @@ public class UsersRepository {
             public void onResponse(Call<User> call, Response<User> response) {
 
                 user.setValue(response.body());
+                appUser = response.body();
                 Log.i("User repository:", user.getValue().toString());
 
             }
@@ -112,5 +119,11 @@ public class UsersRepository {
         });
 
         return apiResponse;
+    }
+
+    public MutableLiveData<ApiResponse> reportUser(int id) {
+
+        //webservice.saveReport();
+        return null;
     }
 }
