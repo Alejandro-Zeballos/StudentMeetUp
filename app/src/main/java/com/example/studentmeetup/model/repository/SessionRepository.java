@@ -147,5 +147,35 @@ public class SessionRepository {
         return apiResponseMutableLiveData;
     }
 
+    public MutableLiveData<ApiResponse> updateSession(Session session){
+        final MutableLiveData<ApiResponse> apiResponseMutableLiveData = new MutableLiveData<>();
+        webservice.updateSession(
+                session.getSessionId(),
+                session.getTitle(),
+                session.getCourse(),
+                session.getDate(),
+                session.getTime(),
+                session.getLocation(),
+                session.getDescription(),
+                session.getTags())
+                .enqueue(new Callback<ApiResponse>() {
+
+                    @Override
+                    public void onResponse(Call<ApiResponse> call, Response<ApiResponse> response) {
+                        apiResponseMutableLiveData.setValue(response.body());
+                        Log.i(TAG, "onResponse called inside update Session");
+                    }
+
+                    @Override
+                    public void onFailure(Call<ApiResponse> call, Throwable t) {
+                        Log.i(TAG, "onFailure called inside update Session");
+                        Log.i(TAG, t.getMessage());
+                        apiResponseMutableLiveData.setValue(new ApiResponse(false,t.getMessage(), "Session not created"));
+                    }
+                });
+
+        return apiResponseMutableLiveData;
+    }
+
 
 }

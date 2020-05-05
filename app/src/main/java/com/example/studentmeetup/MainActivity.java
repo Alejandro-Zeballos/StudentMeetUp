@@ -53,25 +53,11 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-//       FragmentManager fragmentManager = getSupportFragmentManager();
-//
-//        fragmentManager.beginTransaction()
-//                .add(R.id.nav_host_fragment, new FragmentLogin())
-//                //todo block mainBar and back button
-//                .commit();
+
 
 
     }
 
-//    public void switchFragments(Fragment fragment){
-//        FragmentManager fragmentManager = getSupportFragmentManager();
-//
-//        fragmentManager.beginTransaction()
-//                .replace(R.id.nav_host_fragment, fragment)
-//                //todo block mainBar and back button
-//                .commit();
-//        Toast.makeText(this,"Logged in succesfully",Toast.LENGTH_LONG);
-//    }
 
     public static void navigateTo(int navigationId){
 

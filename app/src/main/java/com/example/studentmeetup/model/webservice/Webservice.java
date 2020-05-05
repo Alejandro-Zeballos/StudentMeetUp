@@ -70,6 +70,17 @@ public interface Webservice {
                                     @Field("tags") String tags);
 
     @FormUrlEncoded
+    @POST("updateSession.php")
+    Call<ApiResponse> updateSession(@Field("id") int id,
+                                    @Field("title") String title,
+                                    @Field("course") String course,
+                                    @Field("date") String date,
+                                    @Field("time") String time,
+                                    @Field("location") String location,
+                                    @Field("description") String description,
+                                    @Field("tags") String tags);
+
+    @FormUrlEncoded
     @POST("deleteSession.php")
     Call<ApiResponse> deleteSession(@Field("sessionId") int sessionId);
 

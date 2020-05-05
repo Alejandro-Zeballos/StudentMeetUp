@@ -77,7 +77,7 @@ public class FragmentLogin extends Fragment {
                             Log.i("In the on CHanged", user.toString());
                             loadMainActivity();
                         }else{
-                            Log.i("In the on CHanged", "trowin user null");
+                            Log.i("In the on CHanged", "trowing user null");
                         }
                     }
                 });

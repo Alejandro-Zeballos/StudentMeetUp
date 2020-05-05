@@ -31,7 +31,7 @@ public class DialogSearchSession extends DialogFragment {
                 .setPositiveButton(R.string.button_search_session, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        //todo the logic of searching an user
+                        //todo the logic of searching a sessioon
 
                     }
                 })

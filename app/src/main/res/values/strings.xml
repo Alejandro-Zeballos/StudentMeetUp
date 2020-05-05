@@ -52,6 +52,8 @@
     <string name="title_user_profile">User Profile</string>
     <string name="hint_tag">Session Tag</string>
     <string name="button_search_session">Search</string>
+    <string name="session_updated_message">Session updated succesfully</string>
+    <string name="session_no_updated_message">Something happend session was not updated</string>
 
     <string-array name="reporting_reasons">
         <item>Reason 1</item>
@@ -65,6 +67,4 @@
         <item>Others</item>
     </string-array>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
