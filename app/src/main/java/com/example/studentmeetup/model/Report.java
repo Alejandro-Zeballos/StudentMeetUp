@@ -35,6 +35,8 @@ public class Report {
         return reason;
     }
 
+    public String getReason_desc(){ return reason_desc;}
+
     public String getDate() {
         return date;
     }

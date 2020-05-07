@@ -4,6 +4,7 @@ import android.content.Context;
 import android.util.Log;
 
 import com.example.studentmeetup.model.ApiResponse;
+import com.example.studentmeetup.model.Reason;
 import com.example.studentmeetup.model.Report;
 import com.example.studentmeetup.model.User;
 import com.example.studentmeetup.model.webservice.Webservice;
@@ -44,19 +45,19 @@ public class UsersRepository {
         return instance;
     }
 
-    public MutableLiveData<User> searchUser(String nickname) {
+    public MutableLiveData<List<User>> searchUser(String nickname) {
 
-        final MutableLiveData<User> data = new MutableLiveData<>();
+        final MutableLiveData<List<User>> data = new MutableLiveData<>();
 
-        webservice.searchUser(nickname).enqueue(new Callback<User>() {
+        webservice.searchUser(nickname).enqueue(new Callback<List<User>>() {
             @Override
-            public void onResponse(Call<User> call, Response<User> response) {
+            public void onResponse(Call<List<User>> call, Response<List<User>> response) {
                 data.setValue(response.body());
             }
 
             @Override
-            public void onFailure(Call<User> call, Throwable t) {
-                Log.e("UserRepository == ", t.getMessage());
+            public void onFailure(Call<List<User>> call, Throwable t) {
+                Log.e("Users repository == ", t.getMessage());
             }
         });
 
@@ -121,9 +122,27 @@ public class UsersRepository {
         return apiResponse;
     }
 
-    public MutableLiveData<ApiResponse> reportUser(int id) {
+    public MutableLiveData<ApiResponse> reportUser(Report report) {
 
-        //webservice.saveReport();
-        return null;
+        final MutableLiveData<ApiResponse> apiResponse = new MutableLiveData<>();
+
+        webservice.saveReport(  report.getIdReportee(),
+                                report.getIdReported(),
+                                report.getReason().toString(),
+                                report.getReason_desc(),
+                                report.getDate()
+        ).enqueue(new Callback<ApiResponse>() {
+            @Override
+            public void onResponse(Call<ApiResponse> call, Response<ApiResponse> response) {
+                apiResponse.setValue(response.body());
+            }
+
+            @Override
+            public void onFailure(Call<ApiResponse> call, Throwable t) {
+                apiResponse.setValue(new ApiResponse(false, t.getMessage(),t.getMessage()));
+            }
+        });
+
+        return apiResponse;
     }
 }

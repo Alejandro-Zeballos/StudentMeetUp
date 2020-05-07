@@ -23,7 +23,7 @@ public interface Webservice {
 
 
     @GET("searchUser.php")
-    Call<User> searchUser(@Query("nickname") String nickname);
+    Call<List<User>> searchUser(@Query("nickname") String nickname);
 
     @FormUrlEncoded
     @POST("login.php")
@@ -86,7 +86,12 @@ public interface Webservice {
 
     //----Report------
 
+    @FormUrlEncoded
     @POST("saveReport.php")
-    Call<ApiResponse> saveReport(@Body Report report);
+    Call<ApiResponse> saveReport(@Field("id_reportee") int idReportee,
+                                 @Field("id_reported") int idReported,
+                                 @Field("reason") String reason,
+                                 @Field("reason_desc") String descReason,
+                                 @Field("date") String date);
 
 }

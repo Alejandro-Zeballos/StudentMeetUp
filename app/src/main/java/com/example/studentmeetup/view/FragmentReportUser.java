@@ -5,6 +5,7 @@ import android.os.Bundle;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.util.Log;
@@ -15,9 +16,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.studentmeetup.MainActivity;
 import com.example.studentmeetup.R;
+import com.example.studentmeetup.model.ApiResponse;
 import com.example.studentmeetup.model.Reason;
 import com.example.studentmeetup.model.Report;
 import com.example.studentmeetup.viewmodel.ViewModelUser;
@@ -60,6 +63,17 @@ public class FragmentReportUser extends Fragment {
             public void onClick(View v) {
                 Report report = createReport();
                 Log.i(TAG,report.toString());
+                userModel.reportUser(report).observe(getViewLifecycleOwner(), new Observer<ApiResponse>() {
+                    @Override
+                    public void onChanged(ApiResponse apiResponse) {
+                        if(apiResponse.isSuccessful()){
+                            Toast.makeText(getContext(), apiResponse.getMessage(),Toast.LENGTH_LONG).show();
+                            MainActivity.navigateTo(R.id.action_nav_report_user_to_nav_sessions);
+                        }else{
+                            Toast.makeText(getContext(), getString(R.string.report_not_submitted),Toast.LENGTH_LONG).show();
+                        }
+                    }
+                });
             }
         });
 

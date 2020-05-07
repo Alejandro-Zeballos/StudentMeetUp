@@ -23,15 +23,6 @@
             app:destination="@id/nav_sessions" />
     </fragment>
     <dialog
-        android:id="@+id/nav_search_user"
-        android:name="com.example.studentmeetup.view.dialogs.DialogSearchUser"
-        android:label="dialog_search_user"
-        tools:layout="@layout/dialog_search_user" >
-        <action
-            android:id="@+id/action_nav_search_user_to_nav_user_profile"
-            app:destination="@+id/nav_user_profile" />
-    </dialog>
-    <dialog
         android:id="@+id/nav_search_session"
         android:name="com.example.studentmeetup.view.dialogs.DialogSearchSession"
         android:label="dialog_search_session"
@@ -99,6 +90,9 @@
         <action
             android:id="@+id/action_nav_user_profile_to_nav_report_user"
             app:destination="@id/nav_report_user" />
+        <action
+            android:id="@+id/action_nav_user_profile_to_nav_sessions"
+            app:destination="@id/nav_sessions" />
     </fragment>
     <fragment
         android:id="@+id/nav_session_preview"
@@ -126,5 +120,19 @@
         <action
             android:id="@+id/action_nav_my_sessions_to_nav_manage_session"
             app:destination="@id/nav_manage_session" />
+    </fragment>
+    <fragment
+        android:id="@+id/nav_search_user"
+        android:name="com.example.studentmeetup.view.FragmentSearchUser"
+        android:label="fragment_search_user"
+        tools:layout="@layout/fragment_search_user">
+        <action
+            android:id="@+id/action_nav_search_user_to_nav_user_profile"
+            app:destination="@id/nav_user_profile" />
+        <action
+            android:id="@+id/action_nav_search_user_to_nav_sessions"
+            app:destination="@+id/nav_sessions"
+            app:popUpTo="@+id/nav_sessions"
+            app:popUpToInclusive="true" />
     </fragment>
 </navigation>

@@ -60,11 +60,14 @@
     <string name="delete_filter_text">Delete filter: </string>
     <string name="nickname_empty_message">Nickname field empty </string>
     <string name="user_not_found_message">User not found</string>
+    <string name="search_user">Search User</string>
+    <string name="btn_back">Back</string>
+    <string name="report_not_submitted">Something has happend, report was not submitted</string>
 
     <string-array name="reporting_reasons">
-        <item>Reason 1</item>
-        <item>Reason 2</item>
-        <item>Reason 3</item>
+        <item>Reason1</item>
+        <item>Reason2</item>
+        <item>Reason3</item>
     </string-array>
 
     <string-array name="courses_array">

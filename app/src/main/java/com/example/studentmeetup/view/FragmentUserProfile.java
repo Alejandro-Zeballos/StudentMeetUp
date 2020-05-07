@@ -6,6 +6,7 @@ import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,6 +32,8 @@ public class FragmentUserProfile extends Fragment {
     private Button mBtnBack;
     private User userProfile;
     private ViewModelUser userModel;
+
+    private String TAG = "FragmentUserProfile: ";
 
     public FragmentUserProfile() {
         // Required empty public constructor
@@ -60,8 +63,8 @@ public class FragmentUserProfile extends Fragment {
         //assigning values to text view fields.(values of profile encountered)
         mTvNickname.setText(userProfile.getNickName());
         mTvDescription.setText(userProfile.getDescription());
-        mTvEventHost.setText(userProfile.getSessionsCreated());
-        mTvEventJoined.setText(userProfile.getSessionsJoined());
+        mTvEventHost.setText(String.valueOf(userProfile.getSessionsCreated()));
+        mTvEventJoined.setText(String.valueOf(userProfile.getSessionsJoined()));
 
         //adding onClickListener to btns
         mBtnReport.setOnClickListener(new View.OnClickListener() {
@@ -74,11 +77,17 @@ public class FragmentUserProfile extends Fragment {
         mBtnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                MainActivity.navigateTo(R.id.action_nav_report_user_to_nav_sessions);
+                MainActivity.navigateTo(R.id.action_nav_search_user_to_nav_sessions);
             }
         });
 
         return view;
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        userProfile = userModel.getProfileUser();
+        Log.i(TAG, userProfile.toString());
+    }
 }
