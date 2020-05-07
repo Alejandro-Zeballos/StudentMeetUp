@@ -69,23 +69,28 @@ public class FragmentLogin extends Fragment {
         mButtonLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                userModel.login(mEditTextUserName.getText().toString().trim(),
-                        mEditTextPass.getText().toString().trim())
-                        .observe(getViewLifecycleOwner(), new Observer<User>() {
-                    @Override
-                    public void onChanged(User user) {
-                        Log.i("In the on CHanged", "in fragmentLogin");
-                        if(user!= null){//If found a user with username and pass
-                            Log.i("In the on CHanged", "Calling LoadMainActivity with");
-                            Log.i("In the on CHanged", user.toString());
-                            loadMainActivity(view);
-                        }else{
-                            //If didnt find a user
-                            Log.i("In the on CHanged", "trowing user null");
-                            Toast.makeText(getContext(), getString(R.string.user_not_found),Toast.LENGTH_LONG).show();
-                        }
-                    }
-                });
+                if(areInputsValid()){
+                    userModel.login(mEditTextUserName.getText().toString().trim(),
+                            mEditTextPass.getText().toString().trim())
+                            .observe(getViewLifecycleOwner(), new Observer<User>() {
+                                @Override
+                                public void onChanged(User user) {
+                                    Log.i("In the on CHanged", "in fragmentLogin");
+                                    if(user.getEmail()!=null){//If found a user with username and pass
+                                        Log.i("In the on CHanged", "Calling LoadMainActivity with");
+                                        Log.i("In the on CHanged", user.toString());
+                                        loadMainActivity(view);
+                                    }else{
+                                        //If didnt find a user
+                                        Log.i("In the on CHanged", "trowing user null");
+                                        Toast.makeText(getContext(), getString(R.string.user_not_found),Toast.LENGTH_LONG).show();
+                                    }
+                                }
+                            });
+                }else{
+                    Toast.makeText(getContext(), getString(R.string.fill_fields_correctly), Toast.LENGTH_LONG).show();
+                }
+
 
             }
         });
@@ -103,6 +108,12 @@ public class FragmentLogin extends Fragment {
     }
 
 
+    private boolean areInputsValid(){
+        if(mEditTextUserName.getText().length() ==0 || mEditTextPass.getText().length()==0){
+            return false;
+        }
+        return true;
+    }
 
     private void loadMainActivity(View v){
         NavOptions navOptions = new NavOptions.Builder()

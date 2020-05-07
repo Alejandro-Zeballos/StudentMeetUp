@@ -63,6 +63,7 @@
     <string name="search_user">Search User</string>
     <string name="btn_back">Back</string>
     <string name="report_not_submitted">Something has happend, report was not submitted</string>
+    <string name="fill_fields_correctly">Insert email and password please</string>
 
     <string-array name="reporting_reasons">
         <item>Reason1</item>

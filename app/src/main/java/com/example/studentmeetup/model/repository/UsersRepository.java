@@ -71,19 +71,20 @@ public class UsersRepository {
         Log.i("EN USERREPOSITORY", "adentro del metodo");
 
 
+
         webservice.login(username, password).enqueue(new Callback<User>() {
 
             @Override
             public void onResponse(Call<User> call, Response<User> response) {
-
+                Log.i("EN USERREPO Login dentro on response", "username: " + (user.getValue()==null));
                 user.setValue(response.body());
                 appUser = response.body();
-                Log.i("User repository:", user.getValue().toString());
 
             }
 
             @Override
             public void onFailure(Call<User> call, Throwable t) {
+                Log.i("API failure:", "helo");
                 Log.i("API failure:", t.getMessage());
             }
         });

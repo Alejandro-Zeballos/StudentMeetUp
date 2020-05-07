@@ -1,8 +1,10 @@
 package com.example.studentmeetup.view;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -14,6 +16,8 @@ import com.example.studentmeetup.MainActivity;
 import com.example.studentmeetup.R;
 import com.example.studentmeetup.model.ApiResponse;
 import com.example.studentmeetup.model.Session;
+import com.example.studentmeetup.view.dialogs.MyDatePickerDialog;
+import com.example.studentmeetup.view.dialogs.MyTimePickerDialog;
 import com.example.studentmeetup.viewmodel.ViewModelSessions;
 
 import java.io.Console;
@@ -38,7 +42,8 @@ public class FragmentEditSession extends Fragment {
     private EditText mEditTextTags;
     private Button mBtnEditSession;
     private NavController navController;
-
+    private MyDatePickerDialog dateDialog;
+    private MyTimePickerDialog timeDialog;
     private Session currentSession;
     private ViewModelSessions sessionModel;
 
@@ -61,6 +66,7 @@ public class FragmentEditSession extends Fragment {
 
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -85,6 +91,40 @@ public class FragmentEditSession extends Fragment {
         mEditTextLocation.setText(currentSession.getLocation());
         mEditTextDescription.setText(currentSession.getDescription());
         mEditTextTags.setText(currentSession.getTags());
+
+        mEditTextDate.setOnTouchListener(new View.OnTouchListener() {
+
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                switch(event.getAction()) {
+                    case MotionEvent.ACTION_DOWN :
+                        dateDialog.displayDateDialog(mEditTextDate);
+                        break;
+                    case MotionEvent.ACTION_UP  :
+                        break;
+
+                }
+                return true;
+            }
+        });
+
+        mEditTextTime.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+
+                switch(event.getAction()) {
+                    case MotionEvent.ACTION_DOWN :
+                        timeDialog.displayTimeDialog(mEditTextTime);
+                        break;
+                    case MotionEvent.ACTION_UP  :
+                        break;
+
+                }
+
+                return true;
+            }
+
+        });
 
 
         mBtnEditSession.setOnClickListener(new View.OnClickListener() {
@@ -130,5 +170,12 @@ public class FragmentEditSession extends Fragment {
         }
 
         return true;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        dateDialog = new MyDatePickerDialog(getContext());
+        timeDialog = new MyTimePickerDialog(getContext());
     }
 }

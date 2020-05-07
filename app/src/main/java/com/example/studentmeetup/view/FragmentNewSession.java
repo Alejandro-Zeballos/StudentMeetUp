@@ -1,25 +1,25 @@
 package com.example.studentmeetup.view;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.studentmeetup.MainActivity;
 import com.example.studentmeetup.R;
 import com.example.studentmeetup.model.ApiResponse;
-import com.example.studentmeetup.model.Course;
 import com.example.studentmeetup.model.Session;
 import com.example.studentmeetup.model.User;
+import com.example.studentmeetup.view.dialogs.MyDatePickerDialog;
+import com.example.studentmeetup.view.dialogs.MyTimePickerDialog;
 import com.example.studentmeetup.viewmodel.ViewModelSessions;
 import com.example.studentmeetup.viewmodel.ViewModelUser;
-
-import java.util.Observable;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -27,8 +27,6 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
 
 public class FragmentNewSession extends Fragment {
 
@@ -45,7 +43,11 @@ public class FragmentNewSession extends Fragment {
     private ViewModelUser userModel;
     private ViewModelSessions sessionModel;
     private LiveData<User> user;
+    private MyDatePickerDialog dateDialog;
+    private MyTimePickerDialog timeDialog;
 
+
+    @SuppressLint("ClickableViewAccessibility")
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -62,7 +64,7 @@ public class FragmentNewSession extends Fragment {
 
         userModel = new ViewModelProvider(requireActivity()).get(ViewModelUser.class);
         sessionModel = new ViewModelProvider(requireActivity()).get(ViewModelSessions.class);
-        
+
 
         mButtonCreateSession.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -70,6 +72,40 @@ public class FragmentNewSession extends Fragment {
                 createSession();
             }
         });
+        mEditTextDate.setOnTouchListener(new View.OnTouchListener() {
+
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                switch(event.getAction()) {
+                    case MotionEvent.ACTION_DOWN :
+                        dateDialog.displayDateDialog(mEditTextDate);
+                        break;
+                    case MotionEvent.ACTION_UP  :
+                        break;
+
+                }
+                return true;
+            }
+        });
+
+        mEditTextTime.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+
+                switch(event.getAction()) {
+                    case MotionEvent.ACTION_DOWN :
+                        timeDialog.displayTimeDialog(mEditTextTime);
+                        break;
+                    case MotionEvent.ACTION_UP  :
+                        break;
+
+                }
+
+                return true;
+            }
+
+        });
+
 
 
         return view;
@@ -79,7 +115,11 @@ public class FragmentNewSession extends Fragment {
     public void onResume() {
         super.onResume();
         user = userModel.getUser();
+        dateDialog = new MyDatePickerDialog(getContext());
+        timeDialog = new MyTimePickerDialog(getContext());
     }
+
+
 
     private void createSession(){
         Session session = new Session.Builder(  mEditTextTitle.getText().toString(),
