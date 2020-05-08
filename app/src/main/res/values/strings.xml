@@ -64,6 +64,14 @@
     <string name="btn_back">Back</string>
     <string name="report_not_submitted">Something has happend, report was not submitted</string>
     <string name="fill_fields_correctly">Insert email and password please</string>
+    <string name="label_date">Date:</string>
+    <string name="label_location">Location:</string>
+    <string name="label_time">Time:</string>
+    <string name="label_description">Description:</string>
+    <string name="label_tags">Tags:</string>
+    <string name="label_people_joined">Users joined:</string>
+    <string name="label_admin">Administrator:</string>
+    <string name="session_list">Sessions available</string>
 
     <string-array name="reporting_reasons">
         <item>Reason1</item>

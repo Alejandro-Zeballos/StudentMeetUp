@@ -64,7 +64,7 @@ public class FragmentSessions extends Fragment {
             }
         });
 
-        layoutManager = new LinearLayoutManager(getContext());
+        layoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
         recyclerView.setLayoutManager(layoutManager);
         sessionViewModel = new ViewModelProvider(requireActivity()).get(ViewModelSessions.class);
         //sessionViewModel = new ViewModelSessions();
@@ -93,8 +93,7 @@ public class FragmentSessions extends Fragment {
     }
 
     private void setUpRecyclerView(){
-        layoutManager = new LinearLayoutManager(getContext());
-        recyclerView.setLayoutManager(layoutManager);
+
         String sessionTag = sessionViewModel.getSessionTags();
         if(sessionTag.length()!=0){
             mBtnDeleteFilter.setText(getString(R.string.delete_filter_text)+sessionTag);
