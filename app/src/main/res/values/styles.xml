@@ -32,7 +32,9 @@
     </style>
 
     <style name="input_text" parent="TextAppearance.AppCompat.Medium">
+    </style>
 
+    <style name="label_descriptor" parent="TextAppearance.AppCompat.Medium">
     </style>
 
     <style name="primary_button_style" parent="Widget.AppCompat.Button.Borderless.Colored">

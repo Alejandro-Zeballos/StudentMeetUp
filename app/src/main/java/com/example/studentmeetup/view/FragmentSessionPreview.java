@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.studentmeetup.MainActivity;
 import com.example.studentmeetup.R;
 import com.example.studentmeetup.model.Session;
 import com.example.studentmeetup.viewmodel.ViewModelSessions;
@@ -56,9 +57,16 @@ public class FragmentSessionPreview extends Fragment {
         mTvDate.setText(session.getDate());
         mTvTime.setText(session.getTime());
         mTvPeople.setText("1");
-                //todo agregar en tabla numero de personas en sessions
+        //todo fix this number of people in session
         mTvAdmin.setText(session.getAdminName());
         mTvDescription.setText(session.getDescription());
+
+        mBtnJoin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                MainActivity.navigateTo(R.id.action_nav_session_preview_to_nav_session_room);
+            }
+        });
 
 
         return view;
@@ -70,16 +78,4 @@ public class FragmentSessionPreview extends Fragment {
 
     }
 
-//    sessionViewModel.getCurrentSession().observe(getViewLifecycleOwner(), new Observer<Session>() {
-//        @Override
-//        public void onChanged(Session session) {
-//            mTvTitle.setText(session.getTitle());
-//            mTvDate.setText(session.getDate());
-//            mTvTime.setText(session.getTime());
-//            mTvPeople.setText("1");
-//            //todo agregar en tabla numero de personas en sessions
-//            mTvAdmin.setText(session.getAdminName());
-//            mTvDescription.setText(session.getDescription());
-//        }
-//    });
 }

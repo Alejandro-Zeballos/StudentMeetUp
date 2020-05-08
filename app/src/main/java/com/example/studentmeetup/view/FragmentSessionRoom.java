@@ -2,6 +2,7 @@ package com.example.studentmeetup.view;
 
 import android.os.Bundle;
 import android.text.Layout;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,10 +11,15 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.example.studentmeetup.R;
+import com.example.studentmeetup.model.Session;
+import com.example.studentmeetup.model.User;
+import com.example.studentmeetup.viewmodel.ViewModelSessions;
+import com.example.studentmeetup.viewmodel.ViewModelUser;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 
 public class FragmentSessionRoom extends Fragment {
 
@@ -25,10 +31,26 @@ public class FragmentSessionRoom extends Fragment {
     private TextView mTvTitle;
     private Button mBtnLeaveSession;
 
+    private String TAG= "FragmetSessionRoom";
+
     private Layout mChatLayout;
+    ViewModelSessions sessionModel;
+    ViewModelUser userModel;
+    Session session;
+    User user;
 
 
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        sessionModel = new ViewModelProvider(requireActivity()).get(ViewModelSessions.class);
+        session = sessionModel.getCurrentSession().getValue();
+        Log.i(TAG, "Session = " + session.toString());
 
+        userModel = new ViewModelProvider(requireActivity()).get(ViewModelUser.class);
+        user = userModel.getUser().getValue();
+        Log.i(TAG, "user = " + user.toString());
+    }
 
     @Nullable
     @Override
@@ -46,7 +68,24 @@ public class FragmentSessionRoom extends Fragment {
 
 
 
+        mTvDescription.setText(session.getDescription());
+        mTvDate.setText(session.getDate());
+        mTvTime.setText(session.getTime());
+        mTvTitle.setText(session.getTitle());
+        mTvPeople.setText("");
+        mTvAdmin.setText(session.getAdminName());
+
+
+
 
         return view;
+    }
+
+    public String getSessionId(){
+        return String.valueOf(this.session.getSessionId());
+    }
+
+    public String getUserNickname(){
+        return this.user.getNickName();
     }
 }
