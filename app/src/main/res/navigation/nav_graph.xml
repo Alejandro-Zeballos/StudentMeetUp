@@ -10,8 +10,8 @@
         android:label="fragment_sessions"
         tools:layout="@layout/fragment_sessions" >
         <action
-            android:id="@+id/action_nav_sessions_to_nav_session_preview"
-            app:destination="@id/nav_session_preview" />
+            android:id="@+id/action_nav_sessions_to_nav_session_room"
+            app:destination="@id/nav_session_room" />
     </fragment>
     <fragment
         android:id="@+id/nav_report_user"
@@ -68,19 +68,8 @@
         android:label="fragment_edit_session"
         tools:layout="@layout/fragment_edit_session" >
         <action
-            android:id="@+id/action_nav_edit_session_to_nav_manage_sessions"
-            app:destination="@id/nav_manage_session"
-            app:popUpTo="@+id/nav_manage_session"
-            app:popUpToInclusive="true" />
-    </fragment>
-    <fragment
-        android:id="@+id/nav_manage_session"
-        android:name="com.example.studentmeetup.view.FragmentManageSession"
-        android:label="fragment_manage_session"
-        tools:layout="@layout/fragment_manage_session">
-        <action
-            android:id="@+id/action_nav_manage_session_to_nav_edit_session"
-            app:destination="@id/nav_edit_session" />
+            android:id="@+id/action_nav_edit_session_to_nav_session_room"
+            app:destination="@id/nav_session_room" />
     </fragment>
     <fragment
         android:id="@+id/nav_user_profile"
@@ -95,22 +84,18 @@
             app:destination="@id/nav_sessions" />
     </fragment>
     <fragment
-        android:id="@+id/nav_session_preview"
-        android:name="com.example.studentmeetup.view.FragmentSessionPreview"
-        android:label="fragment_session_preview"
-        tools:layout="@layout/fragment_session_preview" >
-        <action
-            android:id="@+id/action_nav_session_preview_to_nav_session_room"
-            app:destination="@id/nav_session_room" />
-    </fragment>
-    <fragment
         android:id="@+id/nav_session_room"
         android:name="com.example.studentmeetup.view.FragmentSessionRoom"
         android:label="fragment_session_room"
         tools:layout="@layout/fragment_session_room" >
         <action
             android:id="@+id/action_nav_session_room_to_nav_sessions"
-            app:destination="@id/nav_sessions" />
+            app:destination="@id/nav_sessions"
+            app:popUpTo="@+id/nav_sessions"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_nav_session_room_to_nav_edit_session"
+            app:destination="@id/nav_edit_session" />
     </fragment>
     <fragment
         android:id="@+id/nav_my_sessions"
@@ -118,8 +103,8 @@
         android:label="fragment_my_sessions"
         tools:layout="@layout/fragment_my_sessions" >
         <action
-            android:id="@+id/action_nav_my_sessions_to_nav_manage_session"
-            app:destination="@id/nav_manage_session" />
+            android:id="@+id/action_nav_my_sessions_to_nav_session_room"
+            app:destination="@id/nav_session_room" />
     </fragment>
     <fragment
         android:id="@+id/nav_search_user"

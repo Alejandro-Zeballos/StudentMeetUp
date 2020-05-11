@@ -18,10 +18,11 @@
 
     <TextView
         android:id="@+id/text_view_people"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="@string/people_joined"
         android:textAppearance="@style/labels"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/textView9"
         app:layout_constraintTop_toBottomOf="@+id/textView9" />
 
@@ -47,11 +48,13 @@
 
     <TextView
         android:id="@+id/text_view_description"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/layout_margin"
         android:text="@string/description"
         android:textAlignment="center"
         android:textAppearance="@style/input_text"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/textView10"
         app:layout_constraintTop_toBottomOf="@+id/textView10" />
 
@@ -81,10 +84,12 @@
 
     <TextView
         android:id="@+id/text_view_admin"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/layout_margin"
         android:text="@string/session_admin"
         android:textAppearance="@style/labels"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/label"
         app:layout_constraintTop_toBottomOf="@+id/label" />
 
@@ -120,8 +125,8 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view_sessions"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/medium_margin"
+        android:layout_height="250dp"
+        android:layout_marginTop="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -142,9 +147,8 @@
         android:id="@+id/imageView2"
         android:layout_width="25dp"
         android:layout_height="25dp"
+        android:layout_marginStart="@dimen/layout_margin"
         android:layout_marginTop="@dimen/layout_margin"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.23"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/text_view_title"
         app:srcCompat="@mipmap/ic_calendar_orange" />
@@ -158,5 +162,27 @@
         android:textAppearance="@style/label_descriptor"
         app:layout_constraintStart_toStartOf="@+id/imageView2"
         app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+
+    <TextView
+        android:id="@+id/text_view_no_sessions"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/no_sessions_available"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@+id/text_view_title"
+        app:layout_constraintEnd_toEndOf="@+id/recycler_view_sessions"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/recycler_view_sessions" />
+
+    <ImageView
+        android:id="@+id/img_empty_sessions"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginEnd="8dp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@+id/text_view_no_sessions"
+        app:layout_constraintEnd_toStartOf="@+id/text_view_no_sessions"
+        app:layout_constraintTop_toTopOf="@+id/text_view_no_sessions"
+        app:srcCompat="@mipmap/ic_empty_box" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

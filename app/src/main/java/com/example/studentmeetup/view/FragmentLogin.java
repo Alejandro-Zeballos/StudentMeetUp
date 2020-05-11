@@ -78,7 +78,7 @@ public class FragmentLogin extends Fragment {
                                     Log.i("In the on CHanged", "in fragmentLogin");
                                     if(user.getEmail()!=null){//If found a user with username and pass
                                         Log.i("In the on CHanged", "Calling LoadMainActivity with");
-                                        Log.i("In the on CHanged", user.toString());
+                                        Log.i("User changed in view model:", user.toString());
                                         loadMainActivity(view);
                                     }else{
                                         //If didnt find a user

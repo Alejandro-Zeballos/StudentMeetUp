@@ -54,8 +54,12 @@ public interface Webservice {
     Call<List<Session>> getSessionsByTag(@Query("tags") String tag);
 
     @FormUrlEncoded
-    @POST("addUser.php")
-    Call<ApiResponse> addUserToSession(@Field("userId") String userId, @Field("sessionId") String sessionId);
+    @POST("joinSession.php")
+    Call<ApiResponse> joinSession(@Field("userId") int userId, @Field("sessionId") int sessionId);
+
+    @FormUrlEncoded
+    @POST("leaveSession.php")
+    Call<ApiResponse> leaveSession(@Field("userId") int userId, @Field("sessionId") int sessionId);
 
     @FormUrlEncoded
     @POST("createSession.php")

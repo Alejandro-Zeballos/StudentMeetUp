@@ -9,8 +9,11 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.example.studentmeetup.MainActivity;
 import com.example.studentmeetup.R;
+import com.example.studentmeetup.model.ApiResponse;
 import com.example.studentmeetup.model.Session;
 import com.example.studentmeetup.model.User;
 import com.example.studentmeetup.viewmodel.ViewModelSessions;
@@ -19,6 +22,7 @@ import com.example.studentmeetup.viewmodel.ViewModelUser;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 public class FragmentSessionRoom extends Fragment {
@@ -30,6 +34,8 @@ public class FragmentSessionRoom extends Fragment {
     private TextView mTvAdmin;
     private TextView mTvTitle;
     private Button mBtnLeaveSession;
+    private Button mBtnDeleteSession;
+    private Button mBtnEditSession;
 
     private String TAG= "FragmetSessionRoom";
 
@@ -38,6 +44,7 @@ public class FragmentSessionRoom extends Fragment {
     ViewModelUser userModel;
     Session session;
     User user;
+
 
 
     @Override
@@ -50,6 +57,9 @@ public class FragmentSessionRoom extends Fragment {
         userModel = new ViewModelProvider(requireActivity()).get(ViewModelUser.class);
         user = userModel.getUser().getValue();
         Log.i(TAG, "user = " + user.toString());
+
+
+
     }
 
     @Nullable
@@ -65,9 +75,11 @@ public class FragmentSessionRoom extends Fragment {
         mTvAdmin = view.findViewById(R.id.text_view_admin);
         mTvTitle = view.findViewById(R.id.text_view_title);
         mBtnLeaveSession = view.findViewById(R.id.button_leave_session);
+        mBtnDeleteSession = view.findViewById(R.id.button_delete_session);
+        mBtnEditSession = view.findViewById(R.id.button_edit);
 
 
-
+        //Assigning data to widgets from session
         mTvDescription.setText(session.getDescription());
         mTvDate.setText(session.getDate());
         mTvTime.setText(session.getTime());
@@ -75,10 +87,68 @@ public class FragmentSessionRoom extends Fragment {
         mTvPeople.setText("");
         mTvAdmin.setText(session.getAdminName());
 
+        //if session admin = user id display admin buttons (edit, delete) and hide user button (leave)
+        if(session.getAdminId() == user.getId()){
+            displayAdminButtons();
+        }else{
+            displayUserButtons();
+        }
+
+
+        //Setting up buttons listeners
+        mBtnLeaveSession.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                sessionModel.leaveSession(user, session).observe(getViewLifecycleOwner(), new Observer<ApiResponse>() {
+                    @Override
+                    public void onChanged(ApiResponse apiResponse) {
+                        if(apiResponse.isSuccessful()){
+                            Toast.makeText(getContext(), getString(R.string.sesion_leaved_message), Toast.LENGTH_LONG).show();
+                            requireActivity().getOnBackPressedDispatcher().onBackPressed();
+                        }
+                    }
+                });
+            }
+        });
+
+        mBtnEditSession.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                MainActivity.navigateTo(R.id.action_nav_session_room_to_nav_edit_session);
+            }
+        });
+
+        mBtnDeleteSession.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                sessionModel.deleteSession(session).observe(getViewLifecycleOwner(), new Observer<ApiResponse>() {
+                    @Override
+                    public void onChanged(ApiResponse apiResponse) {
+                        if(apiResponse.isSuccessful()){
+                            Toast.makeText(getContext(), getString(R.string.session_deleted_message), Toast.LENGTH_LONG).show();
+                            MainActivity.navigateTo(R.id.action_nav_session_room_to_nav_sessions);
+                        }
+                    }
+                });
+            }
+        });
+
 
 
 
         return view;
+    }
+
+    private void displayAdminButtons() {
+        mBtnLeaveSession.setVisibility(View.INVISIBLE);
+        mBtnEditSession.setVisibility(View.VISIBLE);
+        mBtnDeleteSession.setVisibility(View.VISIBLE);
+    }
+
+    private void displayUserButtons() {
+        mBtnLeaveSession.setVisibility(View.VISIBLE);
+        mBtnEditSession.setVisibility(View.GONE);
+        mBtnDeleteSession.setVisibility(View.GONE);
     }
 
     public String getSessionId(){
@@ -88,4 +158,6 @@ public class FragmentSessionRoom extends Fragment {
     public String getUserNickname(){
         return this.user.getNickName();
     }
+
+
 }

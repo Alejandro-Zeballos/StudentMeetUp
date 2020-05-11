@@ -144,7 +144,7 @@ public class FragmentEditSession extends Fragment {
                     public void onChanged(ApiResponse apiResponse) {
                         if(apiResponse.isSuccessful()){
                             Toast.makeText(getContext(),getString(R.string.session_updated_message),Toast.LENGTH_LONG).show();
-                            MainActivity.navigateTo(R.id.action_nav_edit_session_to_nav_manage_sessions);
+                            requireActivity().getOnBackPressedDispatcher().onBackPressed();
                         }else{
                             Log.e("FragmentEditSession == ", apiResponse.getError());
                             Toast.makeText(getContext(),getString(R.string.session_no_updated_message),Toast.LENGTH_LONG).show();

@@ -34,7 +34,7 @@
     <string name="join_session">Join Session</string>
     <string name="profile">Profile</string>
     <string name="edit_session">Edit Session</string>
-    <string name="delete_session">Delete Session</string>
+    <string name="delete_session">Delete</string>
     <string name="welcome_message">Welcome!</string>
     <string name="registration">Registration</string>
     <string name="time">Time</string>
@@ -72,6 +72,11 @@
     <string name="label_people_joined">Users joined:</string>
     <string name="label_admin">Administrator:</string>
     <string name="session_list">Sessions available</string>
+    <string name="sessions_you_created">Sessions you are admin:</string>
+    <string name="no_sessions_joined">No sessions Joined</string>
+    <string name="sesion_leaved_message">You leaved the session successfully</string>
+    <string name="session_deleted_message">Session deleted succesfully</string>
+    <string name="no_sessions_available">No sessions available</string>
 
     <string-array name="reporting_reasons">
         <item>Reason1</item>
@@ -86,5 +91,6 @@
     </string-array>
     <string name="label_event">Events Host</string>
     <string name="label_event_joined">Events Joined</string>
+    <string name="sessions_your_in">Sessions you are in:</string>
 
 </resources>

@@ -118,6 +118,45 @@ public class SessionRepository {
         return apiResponseMutableLiveData;
     }
 
+    public MutableLiveData<ApiResponse> leaveSession(int userId, int sessionId){
+        final MutableLiveData<ApiResponse> apiResponseMutableLiveData = new MutableLiveData<>();
+        webservice.leaveSession(userId, sessionId).enqueue(new Callback<ApiResponse>() {
+            @Override
+            public void onResponse(Call<ApiResponse> call, Response<ApiResponse> response) {
+                apiResponseMutableLiveData.setValue(response.body());
+            }
+
+            @Override
+            public void onFailure(Call<ApiResponse> call, Throwable t) {
+                Log.i(TAG, "onFailure called inside leave Session");
+                Log.i(TAG, t.getMessage());
+                apiResponseMutableLiveData.setValue(new ApiResponse(false,t.getMessage(), "Session not leaved"));
+            }
+        });
+
+        return apiResponseMutableLiveData;
+    }
+
+    public MutableLiveData<ApiResponse> joinSession(int userId, int sessionId){
+
+        final MutableLiveData<ApiResponse> apiResponseMutableLiveData = new MutableLiveData<>();
+
+        webservice.joinSession(userId, sessionId).enqueue(new Callback<ApiResponse>() {
+            @Override
+            public void onResponse(Call<ApiResponse> call, Response<ApiResponse> response) {
+                apiResponseMutableLiveData.setValue(response.body());
+                Log.i(TAG, "onResponse called inside Join Session");
+            }
+
+            @Override
+            public void onFailure(Call<ApiResponse> call, Throwable t) {
+                Log.i(TAG, "onFailure called inside Join Session");
+                apiResponseMutableLiveData.setValue(new ApiResponse(false,t.getMessage(), "Couldn't join to session"));
+            }
+        });
+        return apiResponseMutableLiveData;
+    }
+
     public MutableLiveData<ApiResponse> createSession(Session session){
         final MutableLiveData<ApiResponse> apiResponseMutableLiveData = new MutableLiveData<>();
         webservice.createSession(session.getTitle(),
