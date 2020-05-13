@@ -30,6 +30,21 @@ public interface Webservice {
     Call<User> login(@Field("email") String username, @Field("password") String password);
 
     @FormUrlEncoded
+    @POST("deleteAccount.php")
+    Call<ApiResponse> deleteAccount(@Field("userId") int userId);
+
+    @FormUrlEncoded
+    @POST("editUserProfile.php")
+    Call<ApiResponse> editUserProfile(@Field("userId") int userId,
+                                      @Field("name") String name,
+                                      @Field("nickname") String nickname,
+                                      @Field("description") String description,
+                                      @Field("password") String password,
+                                      @Field("course") String course
+                               );
+
+
+    @FormUrlEncoded
     @POST("registerUser.php")
     Call<ApiResponse> register(@Field("firstName") String firstName,
                                @Field("nickname") String nickname,

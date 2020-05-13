@@ -82,6 +82,26 @@ public class User {
         this.sessions_joined++;
     }
 
+    public void setName(String student_firstName) {
+        this.student_firstName = student_firstName;
+    }
+
+    public void setNickname(String student_nickname) {
+        this.student_nickname = student_nickname;
+    }
+
+    public void setCourse(Course student_course) {
+        this.student_course = student_course;
+    }
+
+    public void setDescription(String student_description) {
+        this.student_description = student_description;
+    }
+
+    public void setPassword(String student_password) {
+        this.student_password = student_password;
+    }
+
     public static class Builder{
         private int mId;
         private String mName;

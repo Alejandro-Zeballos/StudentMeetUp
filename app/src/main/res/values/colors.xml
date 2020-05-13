@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="colorPrimary">#ff8c25</color>
+    <color name="colorPrimaryLight">#FFE082</color>
+    <color name="color_messages">#FFCA28</color>
     <color name="colorText">#FF000000</color>
-    <color name="colorPrimaryDark">#E04E0D</color>
+    <color name="colorPrimaryDark">#FF6122</color>
     <color name="colorAccent">#D81B60</color>
     <color name="darkGrey">#FF000000</color>
+    <color name="button_danger">#FF0000</color>
 </resources>

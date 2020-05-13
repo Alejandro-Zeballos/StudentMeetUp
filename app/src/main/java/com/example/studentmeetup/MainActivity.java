@@ -1,5 +1,7 @@
 package com.example.studentmeetup;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.lifecycle.ViewModelProvider;
@@ -17,6 +19,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.view.Menu;
+import android.view.MenuItem;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -86,5 +89,25 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         return NavigationUI.navigateUp(navController, mAppBarConfiguration)
                 || super.onSupportNavigateUp();
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        switch (item.getItemId()){
+            case R.id.action_my_profile:
+                NavigationUI.onNavDestinationSelected(item, navController);
+                break;
+            case R.id.action_logout:
+                SharedPreferences preferences = this.getSharedPreferences(getString(R.string.shared_preferences_file_key), Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = preferences.edit();
+                editor.clear()
+                        .commit();
+                finishAndRemoveTask();
+                break;
+
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 }

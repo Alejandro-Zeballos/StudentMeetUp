@@ -33,6 +33,7 @@ public class FragmentSessionRoom extends Fragment {
     private TextView mTvPeople;
     private TextView mTvAdmin;
     private TextView mTvTitle;
+    private TextView mTvLocation;
     private Button mBtnLeaveSession;
     private Button mBtnDeleteSession;
     private Button mBtnEditSession;
@@ -74,6 +75,7 @@ public class FragmentSessionRoom extends Fragment {
         mTvPeople = view.findViewById(R.id.text_view_people);
         mTvAdmin = view.findViewById(R.id.text_view_admin);
         mTvTitle = view.findViewById(R.id.text_view_title);
+        mTvLocation = view.findViewById(R.id.text_view_location);
         mBtnLeaveSession = view.findViewById(R.id.button_leave_session);
         mBtnDeleteSession = view.findViewById(R.id.button_delete_session);
         mBtnEditSession = view.findViewById(R.id.button_edit);
@@ -86,6 +88,7 @@ public class FragmentSessionRoom extends Fragment {
         mTvTitle.setText(session.getTitle());
         mTvPeople.setText("");
         mTvAdmin.setText(session.getAdminName());
+        mTvLocation.setText(session.getLocation());
 
         //if session admin = user id display admin buttons (edit, delete) and hide user button (leave)
         if(session.getAdminId() == user.getId()){

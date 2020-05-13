@@ -51,7 +51,7 @@ public class FragmentRegistration extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_registration, container, false);
 
-        mEditTextName = view.findViewById(R.id.edit_text_name);
+        mEditTextName = view.findViewById(R.id.edit_text_password);
         mEditTextEmail = view.findViewById(R.id.edit_text_email);
         mEditTextNickname = view.findViewById(R.id.edit_text_nickname);
         mEditTextPass = view.findViewById(R.id.edit_text_pass);

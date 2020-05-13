@@ -54,6 +54,7 @@ public class FragmentSessions extends Fragment {
     private TextView mTvPeople;
     private TextView mTvAdmin;
     private TextView mTvTitle;
+    private TextView mTvLocation;
     private TextView mTvNoSessionsMessage;
     private ImageView mImgEmpty;
     private Button mBtnJoin;
@@ -73,6 +74,12 @@ public class FragmentSessions extends Fragment {
     }
 
     @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+    }
+
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_sessions, container, false);
@@ -85,6 +92,7 @@ public class FragmentSessions extends Fragment {
         mTvDate = view.findViewById(R.id.text_view_date);
         mTvTime = view.findViewById(R.id.text_view_time);
         mTvPeople = view.findViewById(R.id.text_view_people);
+        mTvLocation = view.findViewById(R.id.text_view_location);
         mTvAdmin = view.findViewById(R.id.text_view_admin);
         mTvTitle = view.findViewById(R.id.text_view_title);
         mBtnJoin = view.findViewById(R.id.button_join_session);
@@ -147,6 +155,7 @@ public class FragmentSessions extends Fragment {
         mTvTime.setText(sessionSelected.getTime());
         mTvDescription.setText(sessionSelected.getDescription());
         mTvAdmin.setText(sessionSelected.getAdminName());
+        mTvLocation.setText(sessionSelected.getLocation());
 
     }
 

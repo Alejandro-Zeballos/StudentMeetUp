@@ -128,11 +128,59 @@ public class UsersRepository {
         final MutableLiveData<ApiResponse> apiResponse = new MutableLiveData<>();
 
         webservice.saveReport(  report.getIdReportee(),
-                                report.getIdReported(),
-                                report.getReason().toString(),
-                                report.getReason_desc(),
-                                report.getDate()
+                report.getIdReported(),
+                report.getReason().toString(),
+                report.getReason_desc(),
+                report.getDate()
         ).enqueue(new Callback<ApiResponse>() {
+            @Override
+            public void onResponse(Call<ApiResponse> call, Response<ApiResponse> response) {
+                apiResponse.setValue(response.body());
+            }
+
+            @Override
+            public void onFailure(Call<ApiResponse> call, Throwable t) {
+                apiResponse.setValue(new ApiResponse(false, t.getMessage(),t.getMessage()));
+            }
+        });
+
+        return apiResponse;
+    }
+
+    public MutableLiveData<ApiResponse> editUserProfile(User user) {
+
+        final MutableLiveData<ApiResponse> apiResponse = new MutableLiveData<>();
+
+        webservice.editUserProfile(
+
+                user.getId(),
+                user.getName(),
+                user.getNickName(),
+                user.getDescription(),
+                user.getPassword(),
+                user.getCourse().toString()
+
+                )
+                .enqueue(new Callback<ApiResponse>() {
+            @Override
+            public void onResponse(Call<ApiResponse> call, Response<ApiResponse> response) {
+                apiResponse.setValue(response.body());
+            }
+
+            @Override
+            public void onFailure(Call<ApiResponse> call, Throwable t) {
+                apiResponse.setValue(new ApiResponse(false, t.getMessage(),t.getMessage()));
+            }
+        });
+
+        return apiResponse;
+    }
+
+    public MutableLiveData<ApiResponse> deleteAccount(User user) {
+
+        final MutableLiveData<ApiResponse> apiResponse = new MutableLiveData<>();
+
+        webservice.deleteAccount(  user.getId() ).enqueue(new Callback<ApiResponse>() {
             @Override
             public void onResponse(Call<ApiResponse> call, Response<ApiResponse> response) {
                 apiResponse.setValue(response.body());

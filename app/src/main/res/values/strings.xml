@@ -11,7 +11,7 @@
     <string name="menu_home">Home</string>
     <string name="menu_show_sessions">Show sessions</string>
     <string name="menu_filter_sessions">Filter sessions</string>
-    <string name="menu_manage_sessions">Manage session</string>
+    <string name="menu_manage_sessions">My Sessions</string>
     <string name="menu_search_user">Search User</string>
     <string name="menu_create_session">Create Session</string>
     <string name="login">Login</string>
@@ -77,20 +77,30 @@
     <string name="sesion_leaved_message">You leaved the session successfully</string>
     <string name="session_deleted_message">Session deleted succesfully</string>
     <string name="no_sessions_available">No sessions available</string>
+    <string name="label_password">Password</string>
+    <string name="label_repeat_password">Repeat password</string>
+    <string name="thanks_message">Thank you for helping us make this app better</string>
+    <string name="log_out">Log out</string>
+    <string name="delete_account">Delete account</string>
+    <string name="label_email">Email</string>
+    <string name="apply_changes">Apply Changes</string>
 
     <string-array name="reporting_reasons">
-        <item>Reason1</item>
-        <item>Reason2</item>
-        <item>Reason3</item>
+        <item>Spam</item>
+        <item>Language Abuse</item>
+        <item>Other</item>
     </string-array>
 
     <string-array name="courses_array">
         <item>IT</item>
         <item>Business</item>
-        <item>Others</item>
     </string-array>
     <string name="label_event">Events Host</string>
     <string name="label_event_joined">Events Joined</string>
     <string name="sessions_your_in">Sessions you are in:</string>
+    <string name="shared_preferences_file_key">com.example.studentmeetup.prefs</string>
+    <string name="saved_username_key">com.example.studentmeetup.username</string>
+    <string name="saved_password_key">com.example.studentmeetup.password</string>
+    <string name="is_logged_in_key">com.example.studentmeetup.loggedin</string>
 
 </resources>

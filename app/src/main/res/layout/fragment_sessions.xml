@@ -8,6 +8,16 @@
     android:layout_height="match_parent">
 
     <ImageView
+        android:id="@+id/imageView20"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_marginStart="@dimen/layout_margin"
+        android:layout_marginTop="@dimen/medium_margin"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView2"
+        app:srcCompat="@mipmap/ic_location_orange" />
+
+    <ImageView
         android:id="@+id/imageView3"
         android:layout_width="25dp"
         android:layout_height="25dp"
@@ -20,11 +30,12 @@
         android:id="@+id/text_view_people"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
         android:text="@string/people_joined"
         android:textAppearance="@style/labels"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/textView9"
-        app:layout_constraintTop_toBottomOf="@+id/textView9" />
+        app:layout_constraintStart_toEndOf="@+id/textView9"
+        app:layout_constraintTop_toTopOf="@+id/textView9" />
 
     <TextView
         android:id="@+id/label"
@@ -43,7 +54,7 @@
         android:layout_marginTop="@dimen/medium_margin"
         android:text="@string/label_people_joined"
         android:textAppearance="@style/label_descriptor"
-        app:layout_constraintStart_toStartOf="@+id/text_view_admin"
+        app:layout_constraintStart_toStartOf="@+id/label"
         app:layout_constraintTop_toBottomOf="@+id/text_view_admin" />
 
     <TextView
@@ -52,8 +63,8 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="@dimen/layout_margin"
         android:text="@string/description"
-        android:textAlignment="center"
-        android:textAppearance="@style/input_text"
+        android:textAlignment="textStart"
+        android:textAppearance="@style/label_descriptor"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/textView10"
         app:layout_constraintTop_toBottomOf="@+id/textView10" />
@@ -78,7 +89,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/medium_margin"
         android:text="@string/time"
-        android:textAppearance="@style/labels"
+        android:textAppearance="@style/label_descriptor"
         app:layout_constraintBottom_toBottomOf="@+id/imageView3"
         app:layout_constraintStart_toEndOf="@+id/imageView3" />
 
@@ -86,12 +97,13 @@
         android:id="@+id/text_view_admin"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
         android:layout_marginEnd="@dimen/layout_margin"
         android:text="@string/session_admin"
-        android:textAppearance="@style/labels"
+        android:textAppearance="@style/label_descriptor"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/label"
-        app:layout_constraintTop_toBottomOf="@+id/label" />
+        app:layout_constraintStart_toEndOf="@+id/label"
+        app:layout_constraintTop_toTopOf="@+id/label" />
 
     <TextView
         android:id="@+id/text_view_title"
@@ -109,23 +121,24 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/medium_margin"
         android:text="@string/hint_date"
-        android:textAppearance="@style/labels"
+        android:textAppearance="@style/label_descriptor"
         app:layout_constraintBottom_toBottomOf="@+id/imageView2"
         app:layout_constraintStart_toEndOf="@+id/imageView2" />
 
     <Button
         android:id="@+id/btn_delete_filter"
+        style="@style/secondary_button_style"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Filter: "
-        android:visibility="visible"
+        android:visibility="invisible"
         app:layout_constraintBottom_toTopOf="@+id/recycler_view_sessions"
         app:layout_constraintEnd_toEndOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view_sessions"
         android:layout_width="0dp"
-        android:layout_height="250dp"
+        android:layout_height="220dp"
         android:layout_marginTop="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -148,7 +161,7 @@
         android:layout_width="25dp"
         android:layout_height="25dp"
         android:layout_marginStart="@dimen/layout_margin"
-        android:layout_marginTop="@dimen/layout_margin"
+        android:layout_marginTop="@dimen/medium_margin"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/text_view_title"
         app:srcCompat="@mipmap/ic_calendar_orange" />
@@ -157,11 +170,11 @@
         android:id="@+id/textView10"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/layout_margin"
+        android:layout_marginTop="@dimen/medium_margin"
         android:text="@string/label_description"
         android:textAppearance="@style/label_descriptor"
         app:layout_constraintStart_toStartOf="@+id/imageView2"
-        app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView20" />
 
     <TextView
         android:id="@+id/text_view_no_sessions"
@@ -184,5 +197,18 @@
         app:layout_constraintEnd_toStartOf="@+id/text_view_no_sessions"
         app:layout_constraintTop_toTopOf="@+id/text_view_no_sessions"
         app:srcCompat="@mipmap/ic_empty_box" />
+
+    <TextView
+        android:id="@+id/text_view_location"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="@dimen/medium_margin"
+        android:layout_marginEnd="@dimen/layout_margin"
+        android:text="TextView"
+        android:textAppearance="@style/label_descriptor"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/imageView20"
+        app:layout_constraintTop_toBottomOf="@+id/text_view_date" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
