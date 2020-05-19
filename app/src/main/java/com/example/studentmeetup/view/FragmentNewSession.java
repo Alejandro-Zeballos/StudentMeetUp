@@ -27,6 +27,7 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import cn.pedant.SweetAlert.SweetAlertDialog;
 
 public class FragmentNewSession extends Fragment {
 
@@ -138,8 +139,12 @@ public class FragmentNewSession extends Fragment {
         sessionModel.createSession(session).observe(getViewLifecycleOwner(), new Observer<ApiResponse>() {
             @Override
             public void onChanged(ApiResponse apiResponse) {
-                Toast.makeText(getContext(), apiResponse.getMessage(), Toast.LENGTH_LONG).show();
+
                 if(apiResponse.isSuccessful()){
+                    new SweetAlertDialog(getContext(), SweetAlertDialog.SUCCESS_TYPE)
+                            .setTitleText("Done!")
+                            .setContentText("The session was created")
+                            .show();
                     MainActivity.navigateTo(R.id.action_nav_new_session_to_nav_my_sessions);
                 }
 

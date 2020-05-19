@@ -24,6 +24,7 @@ import android.widget.Toast;
 
 import com.example.studentmeetup.MainActivity;
 import com.example.studentmeetup.R;
+import com.example.studentmeetup.helper.MyHelper;
 import com.example.studentmeetup.model.User;
 import com.example.studentmeetup.viewmodel.ViewModelUser;
 
@@ -84,6 +85,7 @@ public class FragmentLogin extends Fragment {
             @Override
             public void onClick(View v) {
                 if(areInputsValid()){
+
                     logIn(  view,
                             mEditTextUserName.getText().toString().trim(),
                             mEditTextPass.getText().toString().trim()

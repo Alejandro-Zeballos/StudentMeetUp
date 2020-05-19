@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import com.example.studentmeetup.MainActivity;
 import com.example.studentmeetup.R;
+import com.example.studentmeetup.helper.MyHelper;
 import com.example.studentmeetup.model.ApiResponse;
 import com.example.studentmeetup.viewmodel.ViewModelUser;
 
@@ -20,6 +21,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import cn.pedant.SweetAlert.SweetAlertDialog;
 
 public class FragmentRegistration extends Fragment {
 
@@ -65,6 +67,15 @@ public class FragmentRegistration extends Fragment {
         mBtnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                if(!mEditTextPass.getText().toString().equals(mEditTextRepeatPass.getText().toString())){
+                    Toast.makeText(getContext(), "Password and Repeat Password must match", Toast.LENGTH_LONG).show();
+                    return;
+                }
+                if(!MyHelper.isPassComplex(mEditTextPass.getText().toString())){
+                    Toast.makeText(getContext(), "Password is not valid,8 caracheters, At least 1 number, At least 1 uppercase ", Toast.LENGTH_LONG).show();
+                return;
+                }
                 userModel.register(mEditTextEmail.getText().toString(),
                         mEditTextName.getText().toString(),
                         mEditTextNickname.getText().toString(),
@@ -77,9 +88,15 @@ public class FragmentRegistration extends Fragment {
                     public void onChanged(ApiResponse apiResponse) {
                         Log.i("In the observer", "in RegistrationFragment");
                         if(apiResponse.isSuccessful()){
+                            new SweetAlertDialog(getContext(), SweetAlertDialog.SUCCESS_TYPE)
+                                    .setTitleText("Done!")
+                                    .setContentText("The account was created")
+                                    .show();
                             ((MainActivity)getActivity()).navigateTo(R.id.action_nav_fragment_registration_to_nav_fragment_login);
+                        }else{
+                            Toast.makeText(getContext(), apiResponse.getMessage(), Toast.LENGTH_SHORT).show();
                         }
-                        Toast.makeText(getContext(), apiResponse.getMessage(), Toast.LENGTH_SHORT).show();
+
                     }
                 });
 

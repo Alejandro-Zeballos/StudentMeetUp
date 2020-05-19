@@ -21,7 +21,7 @@
         android:id="@+id/imageView3"
         android:layout_width="25dp"
         android:layout_height="25dp"
-        android:layout_marginStart="80dp"
+        android:layout_marginStart="8dp"
         app:layout_constraintBottom_toBottomOf="@+id/imageView2"
         app:layout_constraintStart_toEndOf="@+id/text_view_date"
         app:srcCompat="@mipmap/ic_time_orange" />
@@ -138,7 +138,7 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view_sessions"
         android:layout_width="0dp"
-        android:layout_height="220dp"
+        android:layout_height="235dp"
         android:layout_marginTop="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"

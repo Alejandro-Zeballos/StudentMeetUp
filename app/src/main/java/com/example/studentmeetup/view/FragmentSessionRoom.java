@@ -24,13 +24,13 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import cn.pedant.SweetAlert.SweetAlertDialog;
 
 public class FragmentSessionRoom extends Fragment {
 
     private TextView mTvDescription;
     private TextView mTvDate;
     private TextView mTvTime;
-    private TextView mTvPeople;
     private TextView mTvAdmin;
     private TextView mTvTitle;
     private TextView mTvLocation;
@@ -72,7 +72,6 @@ public class FragmentSessionRoom extends Fragment {
         mTvDescription = view.findViewById(R.id.text_view_description);
         mTvDate = view.findViewById(R.id.text_view_date);
         mTvTime = view.findViewById(R.id.text_view_time);
-        mTvPeople = view.findViewById(R.id.text_view_people);
         mTvAdmin = view.findViewById(R.id.text_view_admin);
         mTvTitle = view.findViewById(R.id.text_view_title);
         mTvLocation = view.findViewById(R.id.text_view_location);
@@ -86,7 +85,6 @@ public class FragmentSessionRoom extends Fragment {
         mTvDate.setText(session.getDate());
         mTvTime.setText(session.getTime());
         mTvTitle.setText(session.getTitle());
-        mTvPeople.setText("");
         mTvAdmin.setText(session.getAdminName());
         mTvLocation.setText(session.getLocation());
 
@@ -124,15 +122,44 @@ public class FragmentSessionRoom extends Fragment {
         mBtnDeleteSession.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                sessionModel.deleteSession(session).observe(getViewLifecycleOwner(), new Observer<ApiResponse>() {
-                    @Override
-                    public void onChanged(ApiResponse apiResponse) {
-                        if(apiResponse.isSuccessful()){
-                            Toast.makeText(getContext(), getString(R.string.session_deleted_message), Toast.LENGTH_LONG).show();
-                            MainActivity.navigateTo(R.id.action_nav_session_room_to_nav_sessions);
-                        }
-                    }
-                });
+
+
+                new SweetAlertDialog(getContext(), SweetAlertDialog.WARNING_TYPE)
+                        .setTitleText("Deleting session")
+                        .setContentText("Do you wish to delete this session?")
+                        .setConfirmText("Yes, Delete it")
+
+                        .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                            @Override
+                            public void onClick(final SweetAlertDialog sDialog) {
+                                //on acceptance
+                                sessionModel.deleteSession(session).observe(getViewLifecycleOwner(), new Observer<ApiResponse>() {
+                                    @Override
+                                    public void onChanged(ApiResponse apiResponse) {
+                                        if(apiResponse.isSuccessful()){
+                                            new SweetAlertDialog(getContext(), SweetAlertDialog.SUCCESS_TYPE)
+                                                    .setTitleText("Done!")
+                                                    .setContentText("The session was deleted")
+                                                    .show();
+                                            sDialog.dismiss();
+                                            //Toast.makeText(getContext(), getString(R.string.session_deleted_message), Toast.LENGTH_LONG).show();
+                                            MainActivity.navigateTo(R.id.action_nav_session_room_to_nav_sessions);
+
+                                        }
+                                    }
+                                });
+
+                            }
+                        })
+                        .setCancelButton("No", new SweetAlertDialog.OnSweetClickListener() {
+                            @Override
+                            public void onClick(SweetAlertDialog sDialog) {
+                                sDialog.dismissWithAnimation();
+                            }
+                        })
+                        .show();
+
+
             }
         });
 

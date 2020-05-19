@@ -7,6 +7,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import cn.pedant.SweetAlert.SweetAlertDialog;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -67,10 +68,16 @@ public class FragmentReportUser extends Fragment {
                     @Override
                     public void onChanged(ApiResponse apiResponse) {
                         if(apiResponse.isSuccessful()){
-                            Toast.makeText(getContext(), apiResponse.getMessage(),Toast.LENGTH_LONG).show();
+                            new SweetAlertDialog(getContext(), SweetAlertDialog.SUCCESS_TYPE)
+                                    .setTitleText("Done!")
+                                    .setContentText("The report was submitted")
+                                    .show();
                             MainActivity.navigateTo(R.id.action_nav_report_user_to_nav_sessions);
                         }else{
-                            Toast.makeText(getContext(), getString(R.string.report_not_submitted),Toast.LENGTH_LONG).show();
+                            new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+                                    .setTitleText("Opps..")
+                                    .setContentText("The report was not submitted")
+                                    .show();
                         }
                     }
                 });

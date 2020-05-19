@@ -56,7 +56,7 @@ public class Report {
             this.idReportee = idReportee;
 
             this.date = "";
-            this.reason = Reason.Reason1;
+            this.reason = Reason.other;
             this.reason_desc = "";
 
         }

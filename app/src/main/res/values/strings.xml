@@ -84,19 +84,21 @@
     <string name="delete_account">Delete account</string>
     <string name="label_email">Email</string>
     <string name="apply_changes">Apply Changes</string>
+    <string name="current_password">Input current password</string>
+
 
     <string-array name="reporting_reasons">
-        <item>Spam</item>
-        <item>Language Abuse</item>
-        <item>Other</item>
+        <item>abusive</item>
+        <item>spamming_bot</item>
+        <item>other</item>
     </string-array>
 
     <string-array name="courses_array">
         <item>IT</item>
         <item>Business</item>
     </string-array>
-    <string name="label_event">Events Host</string>
-    <string name="label_event_joined">Events Joined</string>
+    <string name="label_event">Sessions Host</string>
+    <string name="label_event_joined">Sessions Joined</string>
     <string name="sessions_your_in">Sessions you are in:</string>
     <string name="shared_preferences_file_key">com.example.studentmeetup.prefs</string>
     <string name="saved_username_key">com.example.studentmeetup.username</string>
