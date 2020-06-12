@@ -23,3 +23,5 @@ Technologies and techniques used in the creation of this application:
 ● Socket.Io client application for live chat feature
 ● Make unit tests with JUnit
 ● JetPack Navigation feature
+
+Please see the screencast of this application on: https://youtu.be/dk0iC6VJcrg
