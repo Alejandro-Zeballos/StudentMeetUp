@@ -23,5 +23,6 @@ similar academic interests. To use it you have to create an account and Join or 
 * Real time chat feature with Socket.io
 * Make unit tests with JUnit
 * JetPack Navigation feature
+* Gradle
 
 Please see the screencast of this application on: [MeetUp App Screencast](https://youtu.be/dk0iC6VJcrg)
